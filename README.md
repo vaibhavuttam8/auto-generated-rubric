@@ -65,8 +65,9 @@ DSA Dataset/
 ```python
 OPENAI_API_KEY = "your-api-key"
 ```
+```
 python run_pipeline.py --openai-key "your-openai-api-key-here"
-
+```
 3. Run the script:
 ```
 python auto_rubric_generator.py
