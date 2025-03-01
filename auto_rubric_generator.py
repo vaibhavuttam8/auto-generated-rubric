@@ -13,7 +13,7 @@ DATASET_DIR = "DSA Dataset"
 # Use timestamp for output directory
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 OUTPUT_DIR = f"generated_rubrics_{timestamp}"
-OPENAI_API_KEY = "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"  # Set your OpenAI API key
+OPENAI_API_KEY = ""  # Set your OpenAI API key
 
 # Create output directory if it doesn't exist
 os.makedirs(OUTPUT_DIR, exist_ok=True)
