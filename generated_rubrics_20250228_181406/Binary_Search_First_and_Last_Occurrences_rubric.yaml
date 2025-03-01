@@ -1,0 +1,62 @@
+category: Binary Search
+problem_name: First and Last Occurrences
+reference_solution: "// User function Template for Java\n\nclass GFG {\n    ArrayList<Integer>\
+  \ find(int arr[], int x) {\n        int low=0;\n        int res1=-1;\n        int\
+  \ res2=-1;\n        int high=arr.length-1;\n        while(low<=high){\n        \
+  \    int mid=(low+high)/2;\n            if(arr[mid]==x){\n                res1=mid;\n\
+  \                high=mid-1;\n            }\n            else if(x<arr[mid]){\n\
+  \                high=mid-1;\n            }\n            else{\n               \
+  \ low=mid+1;\n            }\n        }\n        low=0;\n        high=arr.length-1;\n\
+  \        while(low<=high){\n            int mid=(low+high)/2;\n            if(arr[mid]==x){\n\
+  \                res2=mid;\n                low=mid+1;\n            }\n        \
+  \    else if(x<arr[mid]){\n                high=mid-1;\n            }\n        \
+  \    else{\n                low=mid+1;\n            }\n        }\n        ArrayList<Integer>\
+  \ a= new ArrayList<>();\n        a.add(res1);\n        a.add(res2);\n        return\
+  \ a;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0 || arr == null
+  item: '[Edge case handling] Correctly handles empty array case'
+  score: 1.0
+- blank: '2'
+  code_fragment: int res1 = -1; int res2 = -1;
+  item: '[Initialization] Correctly initializes result variables for first and last
+    occurrences'
+  score: 2.0
+- blank: '3'
+  code_fragment: while (low <= high) {
+  item: '[Loop structure] Implements the main binary search loop correctly'
+  score: 2.0
+- blank: '4'
+  code_fragment: if (arr[mid] == x) {
+  item: '[Conditional logic] Correctly checks for the target element in the binary
+    search'
+  score: 2.0
+- blank: '5'
+  code_fragment: high = mid - 1;
+  item: '[Update logic] Correctly updates high index when the target is found'
+  score: 2.0
+- blank: '6'
+  code_fragment: low = mid + 1;
+  item: '[Update logic] Correctly updates low index when the target is greater than
+    mid'
+  score: 2.0
+- blank: '7'
+  code_fragment: ArrayList<Integer> a = new ArrayList<>();
+  item: '[Result construction] Correctly constructs the result list to return'
+  score: 2.0
+- blank: '8'
+  code_fragment: return a;
+  item: '[Return statement] Correctly returns the result list with first and last
+    indices'
+  score: 2.0
+- blank: '9'
+  code_fragment: if (res1 == -1 && res2 == -1) {
+  item: '[Edge case handling] Correctly handles the case where the element is not
+    found'
+  score: 2.0
+- blank: '10'
+  code_fragment: int mid = (low + high) / 2;
+  item: '[Midpoint calculation] Correctly calculates the midpoint for binary search'
+  score: 2.0
+total_points: 19.0

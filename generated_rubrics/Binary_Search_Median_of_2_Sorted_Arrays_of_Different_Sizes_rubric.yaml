@@ -1,0 +1,45 @@
+category: Binary Search
+problem_name: Median of 2 Sorted Arrays of Different Sizes
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    public double medianOf2(int a[], int b[]) {\n        // Your Code Here\n  \
+  \      \n        int []arr=new int[a.length+b.length];\n        int k=0;\n     \
+  \   for(int i=0;i<a.length;i++){\n            arr[k]=a[i];\n            k++;\n \
+  \       }\n          for(int j=0;j<b.length;j++){\n            arr[k]=b[j];\n  \
+  \          k++;\n        }\n          Arrays.sort(arr);\n        int mid=arr.length/2;\n\
+  \        int n=arr.length;\n        \n        if(n%2==0){\n            double median=(arr[mid]+arr[mid-1])/2.0;\n\
+  \            return median;\n        }\n        double median=arr[mid];\n      \
+  \  return median;\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 16.0

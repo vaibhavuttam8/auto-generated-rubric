@@ -1,0 +1,14 @@
+AutoRubric Grading Summary Report
+================================
+
+Total Submissions: 6
+Overall Score: 18.00/96.00 (18.75%)
+
+Problem Statistics:
+-----------------
+
+Strings/Anagram:
+  Submissions: 6
+  Average Score: 3.00/16.00 (18.75%)
+  Submission Types:
+    Unknown: 6 (100.00%)

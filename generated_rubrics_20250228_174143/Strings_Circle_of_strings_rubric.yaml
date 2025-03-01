@@ -1,0 +1,81 @@
+category: Strings
+problem_name: Circle of strings
+reference_solution: "//Back-end complete function Template for Java\n\nclass Graph\
+  \ {\n    int V;\n    LinkedList<Integer> adj[];\n    int in[];\n\n    @SuppressWarnings(\"\
+  unchecked\")\n    public Graph(int v) {\n        V = v;\n        adj = new LinkedList[v];\n\
+  \        in = new int[V];\n        for (int i = 0; i < v; ++i) {\n            adj[i]\
+  \ = new LinkedList();\n            in[i] = 0;\n        }\n    }\n\n    void addEdge(int\
+  \ v, int w) {\n        adj[v].add(w);\n        in[w]++;\n    }\n\n    void DFSUtil(int\
+  \ v, Boolean visited[]) {\n        visited[v] = true;\n        int n;\n        Iterator<Integer>\
+  \ i = adj[v].iterator();\n        while (i.hasNext()) {\n            n = i.next();\n\
+  \            if (!visited[n]) DFSUtil(n, visited);\n        }\n    }\n\n    Graph\
+  \ getTranspose() {\n        Graph g = new Graph(V);\n        for (int v = 0; v <\
+  \ V; v++) {\n            Iterator<Integer> i = adj[v].listIterator();\n        \
+  \    while (i.hasNext()) {\n                g.adj[i.next()].add(v);\n          \
+  \      (g.in[v])++;\n            }\n        }\n        return g;\n    }\n\n    Boolean\
+  \ isSC() {\n        // Step 1: Mark all the vertices as not visited (For\n     \
+  \   // first DFS)\n        Boolean visited[] = new Boolean[V];\n        Arrays.fill(visited,\
+  \ false);\n\n        // Step 2: DFS starting from 1st non-zero degree vertex\n \
+  \       int n;\n        for (n = 0; n < V; n++) {\n            if (adj[n].size()\
+  \ > 0) break;\n        }\n        DFSUtil(n, visited);\n\n        // If DFS traversal\
+  \ doesn't visit all vertices, then return false.\n        for (int i = 0; i < V;\
+  \ i++)\n            if (!visited[i] && adj[i].size() > 0) return false;\n\n    \
+  \    // Step 3: Create a reversed graph\n        Graph gr = getTranspose();\n\n\
+  \        // Step 4: Mark all the vertices as not visited (For second DFS)\n    \
+  \    Arrays.fill(visited, false);\n\n        // Step 5: Do DFS for reversed graph\
+  \ starting from first vertex.\n        // Staring Vertex must be same starting point\
+  \ of first DFS\n        gr.DFSUtil(n, visited);\n\n        // If all vertices are\
+  \ not visited in second DFS, then\n        // return false\n        for (int i =\
+  \ 0; i < V; i++)\n            if (!visited[i] && adj[i].size() > 0) return false;\n\
+  \        return true;\n    }\n\n    /* This function returns true if the directed\
+  \ graph has an eulerian\n    cycle, otherwise returns false */\n    Boolean isEulerianCycle()\
+  \ {\n        // Check if all non-zero degree vertices are connected\n        if\
+  \ (isSC() == false) return false;\n        // Check if in degree and out degree\
+  \ of every vertex is same\n        for (int i = 0; i < V; i++)\n            if (adj[i].size()\
+  \ != in[i]) return false;\n        return true;\n    }\n}\n\nclass Solution {\n\
+  \    public int isCircle(String[] arr) {\n        int N = arr.length;\n        Graph\
+  \ g = new Graph(26);\n        for (int i = 0; i < N; i++) {\n            String\
+  \ s = arr[i];\n            g.addEdge(s.charAt(0) - 'a', s.charAt(s.length() - 1)\
+  \ - 'a');\n        }\n\n        if (g.isEulerianCycle()) {\n            return 1;\n\
+  \        } else {\n            return 0;\n        }\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: s.length() == 0 || s.length() == 1
+  item: '[Edge case handling] Handles empty strings and single character strings correctly'
+  score: 1.0
+- blank: '2'
+  code_fragment: Graph g = new Graph(26);
+  item: '[Graph initialization] Correctly initializes the graph with 26 vertices for
+    lowercase letters'
+  score: 2.0
+- blank: '3'
+  code_fragment: for (int i = 0; i < N; i++)
+  item: '[Loop structure] Implements the main loop to iterate through the input array'
+  score: 2.0
+- blank: '4'
+  code_fragment: g.addEdge(s.charAt(0) - 'a', s.charAt(s.length() - 1) - 'a');
+  item: '[Edge addition] Correctly adds edges based on the first and last characters
+    of strings'
+  score: 2.0
+- blank: '5'
+  code_fragment: if (g.isEulerianCycle())
+  item: '[Eulerian cycle check] Correctly checks for Eulerian cycle in the graph'
+  score: 2.0
+- blank: '6'
+  code_fragment: return 1;
+  item: '[Return value] Returns 1 for a valid circle formation'
+  score: 1.0
+- blank: '7'
+  code_fragment: return 0;
+  item: '[Return value] Returns 0 for an invalid circle formation'
+  score: 1.0
+- blank: '8'
+  code_fragment: Arrays.fill(visited, false);
+  item: '[Visited array initialization] Correctly initializes the visited array for
+    DFS'
+  score: 2.0
+- blank: '9'
+  code_fragment: for (int i = 0; i < V; i++)
+  item: '[Vertex check] Implements the check for all vertices in the graph'
+  score: 2.0
+total_points: 15.0

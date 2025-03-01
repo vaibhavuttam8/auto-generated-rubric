@@ -1,0 +1,64 @@
+category: Arrays
+problem_name: Maximum Subarray Sum
+reference_solution: "// Java Program to find the maximum subarray sum using nested\
+  \ loops \n\nimport java.util.Arrays;\n\nclass GfG {\n\n    // Function to find the\
+  \ sum of subarray with maximum sum\n    static int maxSubarraySum(int[] arr) {\n\
+  \        int res = arr[0];\n  \n        // Outer loop for starting point of subarray\n\
+  \        for (int i = 0; i < arr.length; i++) {\n            int currSum = 0;\n\
+  \      \n            // Inner loop for ending point of subarray\n            for\
+  \ (int j = i; j < arr.length; j++) {\n                currSum = currSum + arr[j];\n\
+  \              \n                // Update res if currSum is greater than res\n\
+  \                res = Math.max(res, currSum);\n            }\n        }\n     \n\
+  \   return res;\n    }\n\n    public static void main(String[] args) {\n       \
+  \ int[] arr = {2, 3, -8, 7, -1, 2, 3};\n        System.out.println(maxSubarraySum(arr));\n\
+  \    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0 || allNegative(arr)
+  item: '[Edge case handling] Correctly handles the case of an empty array or an array
+    with all negative numbers'
+  score: 1.0
+- blank: '2'
+  code_fragment: int currSum = 0; int maxSum = arr[0];
+  item: '[Variable initialization] Properly initializes current sum and maximum sum
+    variables'
+  score: 2.0
+- blank: '3'
+  code_fragment: for(int i = 0; i < arr.length; i++)
+  item: '[Outer loop structure] Implements the outer loop to iterate through each
+    starting index of the subarray'
+  score: 2.0
+- blank: '4'
+  code_fragment: for(int j = i; j < arr.length; j++)
+  item: '[Inner loop structure] Implements the inner loop to iterate through each
+    ending index of the subarray'
+  score: 2.0
+- blank: '5'
+  code_fragment: currSum += arr[j];
+  item: '[Current sum update] Correctly updates the current sum by adding the current
+    element'
+  score: 2.0
+- blank: '6'
+  code_fragment: currSum = Math.max(arr[i], currSum + arr[i]);
+  item: '[Current sum reset] Correctly resets the current sum to the current element
+    if it is greater'
+  score: 2.0
+- blank: '7'
+  code_fragment: maxSum = Math.max(maxSum, currSum);
+  item: '[Maximum sum update] Updates the maximum sum whenever the current sum exceeds
+    it'
+  score: 2.0
+- blank: '8'
+  code_fragment: return maxSum;
+  item: '[Return statement] Correctly returns the maximum sum found'
+  score: 2.0
+- blank: Multiple
+  code_fragment: complete_loop_structure
+  item: "[Algorithm correctness] Correctly implements the overall structure of Kadane\u2019\
+    s algorithm"
+  score: 3.0
+- blank: Multiple
+  code_fragment: Single pass _AND constant space _AND no nested loops
+  item: '[Algorithm efficiency] Achieves O(n) time complexity with O(1) space complexity'
+  score: 2.0
+total_points: 20.0

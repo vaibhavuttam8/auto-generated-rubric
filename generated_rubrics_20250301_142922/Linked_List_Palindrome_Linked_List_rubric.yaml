@@ -1,0 +1,74 @@
+category: Linked List
+problem_name: Palindrome Linked List
+reference_solution: "class Solution {\n    // Function to reverse a linked list\n\
+  \    static Node reverseList(Node head) {\n        Node prev = null;\n        Node\
+  \ curr = head;\n        Node next;\n\n        while (curr != null) {\n         \
+  \   next = curr.next;\n            curr.next = prev;\n            prev = curr;\n\
+  \            curr = next;\n        }\n        return prev;\n    }\n\n    // Function\
+  \ to check if two lists are identical\n    static boolean isIdentical(Node n1, Node\
+  \ n2) {\n        while (n1 != null && n2 != null) {\n            if (n1.data !=\
+  \ n2.data) return false;\n            n1 = n1.next;\n            n2 = n2.next;\n\
+  \        }\n        return true;\n    }\n\n    // Function to check whether the\
+  \ list is palindrome\n    static boolean isPalindrome(Node head) {\n        if (head\
+  \ == null || head.next == null) return true;\n\n        Node slow = head, fast =\
+  \ head;\n\n        while (fast.next != null && fast.next.next != null) {\n     \
+  \       slow = slow.next;\n            fast = fast.next.next;\n        }\n\n   \
+  \     Node head2 = reverseList(slow.next);\n        slow.next = null;\n\n      \
+  \  boolean ret = isIdentical(head, head2);\n\n        head2 = reverseList(head2);\n\
+  \        slow.next = head2;\n\n        return ret;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if (head == null || head.next == null)
+  item: '[Edge case handling] Correctly checks if the list is empty or has one node'
+  score: 2.0
+- blank: '1'
+  code_fragment: Node slow = head, fast = head;
+  item: '[Pointer initialization] Initializes slow and fast pointers for the two-pointer
+    technique'
+  score: 2.0
+- blank: '1'
+  code_fragment: while (fast.next != null && fast.next.next != null)
+  item: '[Loop structure] Implements the loop to find the middle of the list'
+  score: 2.0
+- blank: '1'
+  code_fragment: slow = slow.next; fast = fast.next.next;
+  item: '[Pointer update] Correctly updates slow and fast pointers within the loop'
+  score: 2.0
+- blank: '1'
+  code_fragment: Node head2 = reverseList(slow.next);
+  item: '[List reversal] Correctly reverses the second half of the list'
+  score: 2.0
+- blank: '1'
+  code_fragment: slow.next = null;
+  item: '[List splitting] Properly splits the list into two halves'
+  score: 2.0
+- blank: '1'
+  code_fragment: boolean ret = isIdentical(head, head2);
+  item: '[List comparison] Correctly checks if the two halves of the list are identical'
+  score: 2.0
+- blank: '1'
+  code_fragment: head2 = reverseList(head2);
+  item: '[Restoration] Restores the original list structure after comparison'
+  score: 2.0
+- blank: '1'
+  code_fragment: return ret;
+  item: '[Final output] Returns the correct boolean result indicating if the list
+    is a palindrome'
+  score: 2.0
+- blank: '1'
+  code_fragment: Node prev = null; Node curr = head;
+  item: '[Reversal initialization] Initializes pointers for the list reversal function'
+  score: 2.0
+- blank: '1'
+  code_fragment: while (curr != null)
+  item: '[Reversal loop] Implements the loop to reverse the linked list'
+  score: 2.0
+- blank: '1'
+  code_fragment: next = curr.next; curr.next = prev;
+  item: '[Reversal logic] Correctly updates pointers during the reversal process'
+  score: 2.0
+- blank: '1'
+  code_fragment: return prev;
+  item: '[Reversal output] Returns the new head of the reversed list'
+  score: 2.0
+total_points: 26.0

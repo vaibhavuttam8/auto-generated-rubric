@@ -1,0 +1,55 @@
+category: Binary Search
+problem_name: Median of 2 Sorted Arrays of Different Sizes
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    public double medianOf2(int a[], int b[]) {\n        // Your Code Here\n  \
+  \      \n        int []arr=new int[a.length+b.length];\n        int k=0;\n     \
+  \   for(int i=0;i<a.length;i++){ arr[k]=a[i]; k++; }\n          for(int j=0;j<b.length;j++){\
+  \ arr[k]=b[j]; k++; }\n          Arrays.sort(arr);\n        int mid=arr.length/2;\n\
+  \        int n=arr.length;\n        \n        if(n%2==0){\n            double median=(arr[mid]+arr[mid-1])/2.0;\n\
+  \            return median;\n        }\n        double median=arr[mid];\n      \
+  \  return median;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: int[] arr = new int[a.length + b.length];
+  item: '[Initialization] Correctly initializes a new array to hold the merged elements'
+  score: 1.0
+- blank: '2'
+  code_fragment: for(int i = 0; i < a.length; i++)
+  item: '[Merging] Properly iterates through the first array to copy elements'
+  score: 1.0
+- blank: '3'
+  code_fragment: arr[k] = a[i]; k++;
+  item: '[Merging] Correctly assigns elements from the first array to the merged array'
+  score: 1.0
+- blank: '4'
+  code_fragment: for(int j = 0; j < b.length; j++)
+  item: '[Merging] Properly iterates through the second array to copy elements'
+  score: 1.0
+- blank: '5'
+  code_fragment: arr[k] = b[j]; k++;
+  item: '[Merging] Correctly assigns elements from the second array to the merged
+    array'
+  score: 1.0
+- blank: '6'
+  code_fragment: Arrays.sort(arr);
+  item: '[Sorting] Correctly sorts the merged array'
+  score: 2.0
+- blank: '7'
+  code_fragment: int mid = arr.length / 2;
+  item: '[Median Calculation] Correctly calculates the middle index of the merged
+    array'
+  score: 2.0
+- blank: '8'
+  code_fragment: if(n % 2 == 0)
+  item: '[Median Calculation] Correctly checks if the total number of elements is
+    even'
+  score: 2.0
+- blank: '9'
+  code_fragment: double median = (arr[mid] + arr[mid - 1]) / 2.0;
+  item: '[Median Calculation] Correctly computes the median for an even-sized array'
+  score: 2.0
+- blank: '10'
+  code_fragment: return median;
+  item: '[Return Value] Correctly returns the computed median'
+  score: 2.0
+total_points: 15.0

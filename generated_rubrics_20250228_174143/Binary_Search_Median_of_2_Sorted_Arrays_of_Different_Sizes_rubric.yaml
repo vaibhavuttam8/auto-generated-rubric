@@ -1,0 +1,50 @@
+category: Binary Search
+problem_name: Median of 2 Sorted Arrays of Different Sizes
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    public double medianOf2(int a[], int b[]) {\n        // Your Code Here\n  \
+  \      \n        int []arr=new int[a.length+b.length];\n        int k=0;\n     \
+  \   for(int i=0;i<a.length;i++){\n            arr[k]=a[i];\n            k++;\n \
+  \       }\n          for(int j=0;j<b.length;j++){\n            arr[k]=b[j];\n  \
+  \          k++;\n        }\n          Arrays.sort(arr);\n        int mid=arr.length/2;\n\
+  \        int n=arr.length;\n        \n        if(n%2==0){\n            double median=(arr[mid]+arr[mid-1])/2.0;\n\
+  \            return median;\n        }\n        double median=arr[mid];\n      \
+  \  return median;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: int[] merged = new int[a.length + b.length];
+  item: '[Initialization] Correctly initializes the merged array to hold combined
+    elements'
+  score: 1.0
+- blank: '2'
+  code_fragment: for(int i = 0; i < a.length; i++) { merged[k++] = a[i]; }
+  item: '[Merging] Correctly merges array a[] into the merged array'
+  score: 1.0
+- blank: '3'
+  code_fragment: for(int j = 0; j < b.length; j++) { merged[k++] = b[j]; }
+  item: '[Merging] Correctly merges array b[] into the merged array'
+  score: 1.0
+- blank: '4'
+  code_fragment: Arrays.sort(merged);
+  item: '[Sorting] Correctly sorts the merged array'
+  score: 2.0
+- blank: '5'
+  code_fragment: int mid = merged.length / 2;
+  item: '[Median Calculation] Correctly calculates the middle index for median'
+  score: 1.0
+- blank: '6'
+  code_fragment: if (merged.length % 2 == 0) {
+  item: '[Median Logic] Correctly identifies if the merged array length is even'
+  score: 1.0
+- blank: '7'
+  code_fragment: double median = (merged[mid] + merged[mid - 1]) / 2.0;
+  item: '[Median Logic] Correctly calculates median for even-length merged array'
+  score: 2.0
+- blank: '8'
+  code_fragment: return merged[mid];
+  item: '[Median Logic] Correctly returns median for odd-length merged array'
+  score: 2.0
+- blank: '9'
+  code_fragment: return median;
+  item: '[Return Value] Correctly returns the calculated median'
+  score: 1.0
+total_points: 12.0

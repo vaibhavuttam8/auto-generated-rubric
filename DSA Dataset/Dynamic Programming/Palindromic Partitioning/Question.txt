@@ -1,0 +1,19 @@
+Palindromic Partitioning
+Given a string s, a partitioning of the string is a palindrome partitioning if every sub-string of the partition is a palindrome. Determine the fewest cuts needed for palindrome partitioning of the given string.
+Examples:
+Input: s = "ababbbabbababa"
+Output: 3
+Explaination: After 3 partitioning substrings 
+are "a", "babbbab", "b", "ababa".
+Input: s = "aaabba"
+Output: 1
+Explaination: The substrings after 1
+partitioning are "aa" and "abba".
+
+Input: s = "aaa"
+Output: 0
+Explaination: No partitioning is required.
+Constraints:
+1 ≤ |s| ≤ 103
+s contain lowercase letters only
+

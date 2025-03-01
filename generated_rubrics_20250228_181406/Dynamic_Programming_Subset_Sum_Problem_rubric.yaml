@@ -1,0 +1,63 @@
+category: Dynamic Programming
+problem_name: Subset Sum Problem
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\n\
+  \    static Boolean isSubsetSum(int arr[], int target) {\n        int[][] d = new\
+  \ int[201][40001];\n        for (int i=0; i<201; i++) {\n            for (int j=0;\
+  \ j<40001; j++) d[i][j] = Integer.MAX_VALUE;\n        }\n        return find(arr,\
+  \ arr.length-1, target, d);\n    }\n    \n    static Boolean find(int[] a, int i,\
+  \ int t, int[][] d) {\n        if (t == 0) return true;\n        if (i == 0) return\
+  \ a[i] == t;\n        if (d[i][t] != Integer.MAX_VALUE) return d[i][t] == 1;\n \
+  \       \n        boolean y = false;\n        if (t >= a[i]) y = find(a, i-1, t-a[i],\
+  \ d);\n        boolean n = find(a, i-1, t, d);\n        d[i][t] = y || n ? 1 : 0;\n\
+  \        \n        return y || n;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0 || arr == null
+  item: '[Edge case handling] Correctly checks for empty array or null input'
+  score: 1.0
+- blank: '2'
+  code_fragment: int[][] d = new int[201][40001]
+  item: '[Variable initialization] Correctly initializes the DP table with appropriate
+    dimensions'
+  score: 2.0
+- blank: '3'
+  code_fragment: for (int i = 0; i < arr.length; i++)
+  item: '[Loop structure] Implements a loop to iterate through the array elements'
+  score: 2.0
+- blank: '4'
+  code_fragment: if (t == 0) return true;
+  item: '[Base case handling] Correctly identifies the base case when target sum is
+    zero'
+  score: 2.0
+- blank: '5'
+  code_fragment: if (i == 0) return arr[i] == t;
+  item: '[Base case handling] Correctly checks if the last element equals the target'
+  score: 2.0
+- blank: '6'
+  code_fragment: if (d[i][t] != Integer.MAX_VALUE)
+  item: '[Memoization check] Correctly checks if the result is already computed'
+  score: 2.0
+- blank: '7'
+  code_fragment: boolean y = find(a, i-1, t-a[i], d);
+  item: '[Recursive call] Correctly implements the recursive call for including the
+    current element'
+  score: 2.0
+- blank: '8'
+  code_fragment: boolean n = find(a, i-1, t, d);
+  item: '[Recursive call] Correctly implements the recursive call for excluding the
+    current element'
+  score: 2.0
+- blank: '9'
+  code_fragment: 'd[i][t] = y || n ? 1 : 0;'
+  item: '[Memoization update] Correctly updates the DP table with the computed result'
+  score: 2.0
+- blank: '10'
+  code_fragment: return y || n;
+  item: '[Final return] Correctly returns the result of the subset sum computation'
+  score: 2.0
+- blank: '11'
+  code_fragment: time complexity
+  item: '[Algorithm efficiency] Demonstrates understanding of the time complexity
+    of the solution'
+  score: 2.0
+total_points: 21.0

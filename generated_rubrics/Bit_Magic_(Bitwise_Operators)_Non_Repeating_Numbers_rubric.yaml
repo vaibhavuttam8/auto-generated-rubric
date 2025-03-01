@@ -1,0 +1,49 @@
+category: Bit Magic (Bitwise Operators)
+problem_name: Non Repeating Numbers
+reference_solution: "class Solution {\n    public List<Integer> singleNumber(int[]\
+  \ arr) {\n        // Step 1: Get the XOR of the two unique numbers\n        int\
+  \ diff = 0;\n        for (int num : arr) {\n            diff ^= num;\n        }\n\
+  \n        // Step 2: Isolate the rightmost set bit in diff\n        diff &= -diff;\n\
+  \n        // Step 3: Divide numbers into two groups and XOR to find unique numbers\n\
+  \        int num1 = 0, num2 = 0;\n        for (int num : arr) {\n            if\
+  \ ((num & diff) == 0) // If the bit is not set\n            {\n                num1\
+  \ ^= num;\n            } else // If the bit is set\n            {\n            \
+  \    num2 ^= num;\n            }\n        }\n\n        // Step 4: Add numbers to\
+  \ the list in sorted order\n        List<Integer> result = new ArrayList<>();\n\
+  \        if (num1 < num2) {\n            result.add(num1);\n            result.add(num2);\n\
+  \        } else {\n            result.add(num2);\n            result.add(num1);\n\
+  \        }\n\n        return result;\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 16.0

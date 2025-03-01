@@ -1,0 +1,47 @@
+category: Binary Search
+problem_name: First 1 in a Sorted Binary Array
+reference_solution: "// User function Template for Java\n\nclass Solution {\n\n  \
+  \  public long firstIndex(int arr[]) {\n        // Your code goes here\n       \
+  \ int low = 0;\n        int high = arr.length - 1;\n        \n        while (low\
+  \ <= high) {\n            int mid = low + ((high - low) >> 1);\n            if (arr[mid]\
+  \ == 1) high = mid - 1;\n            else low = mid + 1;\n        }\n        \n\
+  \        if (low == arr.length) return -1;\n        return low;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length <= 1 || arr == null
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '2'
+  code_fragment: int low = 0; int high = arr.length - 1;
+  item: '[Variable initialization] Correctly initializes low and high variables'
+  score: 2.0
+- blank: '3'
+  code_fragment: while (low <= high)
+  item: '[Loop structure] Implements the while loop with the correct condition'
+  score: 2.0
+- blank: '4'
+  code_fragment: int mid = low + ((high - low) >> 1);
+  item: '[Midpoint calculation] Correctly calculates the midpoint using bitwise operation'
+  score: 2.0
+- blank: '5'
+  code_fragment: if (arr[mid] == 1) high = mid - 1;
+  item: '[Conditional logic for 1] Correctly checks if arr[mid] is 1 and updates high'
+  score: 2.0
+- blank: '6'
+  code_fragment: else low = mid + 1;
+  item: '[Conditional logic for 0] Correctly checks if arr[mid] is 0 and updates low'
+  score: 2.0
+- blank: '7'
+  code_fragment: if (low == arr.length) return -1;
+  item: '[Final result handling] Correctly checks if low is out of bounds and returns
+    -1'
+  score: 2.0
+- blank: '8'
+  code_fragment: return low;
+  item: '[Return statement] Returns the correct index of the first 1'
+  score: 2.0
+- blank: Multiple
+  code_fragment: while (low <= high)
+  item: '[Algorithm efficiency] Uses binary search to achieve O(log n) time complexity'
+  score: 3.0
+total_points: 18.0

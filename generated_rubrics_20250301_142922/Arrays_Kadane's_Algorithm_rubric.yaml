@@ -1,0 +1,54 @@
+category: Arrays
+problem_name: Kadane's Algorithm
+reference_solution: "// Java Program to find the maximum subarray sum using nested\
+  \ loops \n\nimport java.util.Arrays;\n\nclass GfG {\n\n    // Function to find the\
+  \ sum of subarray with maximum sum\n    static int maxSubarraySum(int[] arr) {\n\
+  \        int res = arr[0];\n  \n        // Outer loop for starting point of subarray\n\
+  \        for (int i = 0; i < arr.length; i++) {\n            int currSum = 0;\n\
+  \      \n            // Inner loop for ending point of subarray\n            for\
+  \ (int j = i; j < arr.length; j++) {\n                currSum = currSum + arr[j];\n\
+  \              \n                // Update res if currSum is greater than res\n\
+  \                res = Math.max(res, currSum);\n            }\n        }\n     \n\
+  \   return res;\n    }\n\n    public static void main(String[] args) {\n       \
+  \ int[] arr = {2, 3, -8, 7, -1, 2, 3};\n        System.out.println(maxSubarraySum(arr));\n\
+  \    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0
+  item: '[Edge case handling] Checks if the input array is empty'
+  score: 1.0
+- blank: '2'
+  code_fragment: allNegative(arr)
+  item: '[Edge case handling] Handles case where all elements are negative'
+  score: 1.0
+- blank: '3'
+  code_fragment: int currSum = 0; int maxSum = arr[0];
+  item: '[Logical correctness] Correctly initializes current sum and maximum sum'
+  score: 2.0
+- blank: '4'
+  code_fragment: for(int i = 0; i < arr.length; i++)
+  item: '[Logical correctness] Iterates through the array elements correctly'
+  score: 2.0
+- blank: '5'
+  code_fragment: currSum = Math.max(arr[i], currSum + arr[i]);
+  item: '[Logical correctness] Updates current sum correctly based on current element'
+  score: 2.0
+- blank: '6'
+  code_fragment: maxSum = Math.max(maxSum, currSum);
+  item: '[Logical correctness] Updates maximum sum whenever current sum exceeds it'
+  score: 2.0
+- blank: '7'
+  code_fragment: return maxSum;
+  item: '[Logical correctness] Returns the maximum sum found'
+  score: 2.0
+- blank: '8'
+  code_fragment: for(int i = 0; i < arr.length; i++) { int currSum = 0; for(int j
+    = i; j < arr.length; j++) { currSum += arr[j]; maxSum = Math.max(maxSum, currSum);
+    }}
+  item: '[Algorithm correctness] Implements Kadane''s algorithm correctly'
+  score: 3.0
+- blank: '9'
+  code_fragment: Single pass _AND constant space
+  item: '[Algorithm efficiency] Achieves O(n) time complexity and O(1) space complexity'
+  score: 2.0
+total_points: 17.0

@@ -1,0 +1,68 @@
+category: Hash
+problem_name: Smallest window containing all characters of another string
+reference_solution: "class Solution {\n    // Function to find the smallest window\
+  \ in the string s1 consisting\n    // of all the characters of string s2.\n    public\
+  \ static String smallestWindow(String s1, String s2) {\n\n        int len1 = s1.length();\n\
+  \        int len2 = s2.length();\n\n        // if length of string s2 is greater\
+  \ than string s1 then we return -1.\n        if (len1 < len2) {\n            return\
+  \ \"\";\n        }\n\n        // using hash tables to store the count of characters\
+  \ in strings.\n        int[] hash_pat = new int[256];\n        int[] hash_str =\
+  \ new int[256];\n\n        // storing the count of characters in string s2 in hash\
+  \ table.\n        for (int i = 0; i < len2; i++) {\n            hash_pat[s2.charAt(i)]++;\n\
+  \        }\n\n        int start = 0;\n        int start_index = -1;\n        int\
+  \ min_len = Integer.MAX_VALUE;\n        int count = 0;\n        for (int j = 0;\
+  \ j < len1; j++) {\n            // storing the count of characters in string s1\
+  \ in hash table.\n            hash_str[s1.charAt(j)]++;\n\n            // if count\
+  \ of current character in string s1 is equal to or less\n            // than in\
+  \ string s2, we increment the counter.\n            if (hash_pat[s1.charAt(j)] !=\
+  \ 0 &&\n                hash_str[s1.charAt(j)] <= hash_pat[s1.charAt(j)]) {\n  \
+  \              count++;\n            }\n\n            // if all the characters are\
+  \ matched\n            if (count == len2) {\n                while (hash_str[s1.charAt(start)]\
+  \ > hash_pat[s1.charAt(start)] ||\n                       hash_pat[s1.charAt(start)]\
+  \ == 0) {\n                    // we try to minimize the window.\n             \
+  \       if (hash_str[s1.charAt(start)] > hash_pat[s1.charAt(start)]) {\n       \
+  \                 hash_str[s1.charAt(start)]--;\n                    }\n       \
+  \             start++;\n                }\n                // updating window size.\n\
+  \                int len_window = j - start + 1;\n                if (min_len >\
+  \ len_window) {\n                    // if new minimum sub-string is found, we store\
+  \ value\n                    // of its starting index for new found window.\n  \
+  \                  min_len = len_window;\n                    start_index = start;\n\
+  \                }\n            }\n        }\n        // returning the smallest\
+  \ window or -1 if no such window is present.\n        if (start_index == -1) {\n\
+  \            return (\"\");\n        } else {\n            return (s1.substring(start_index,\
+  \ start_index + min_len));\n        }\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: s.length() == 0 || s.length() == 1
+  item: '[Edge case handling] Handles empty strings, single character strings, or
+    case sensitivity'
+  score: 1.0
+- blank: '1'
+  code_fragment: initialization pattern specific to this problem
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: main loop pattern specific to this problem
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: conditional logic pattern specific to this problem
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: variable update pattern specific to this problem
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return pattern specific to this problem
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: Essential algorithm components for this problem type
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Efficient algorithm pattern for this problem type
+  item: '[Algorithm efficiency] Uses an efficient approach with appropriate time complexity'
+  score: 2.0
+total_points: 16.0

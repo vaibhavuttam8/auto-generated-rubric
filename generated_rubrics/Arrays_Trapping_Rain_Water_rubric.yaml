@@ -1,0 +1,51 @@
+category: Arrays
+problem_name: Trapping Rain Water
+reference_solution: "import java.util.*;\n\nclass GfG {\n    static int maxWater(int[]\
+  \ arr) {\n        int n = arr.length;\n\n        // Left[i] contains height of tallest\
+  \ bar to the\n        // left of i'th bar including itself\n        int[] left =\
+  \ new int[n];\n\n        // Right[i] contains height of tallest bar to\n       \
+  \ // the right of i'th bar including itself\n        int[] right = new int[n];\n\
+  \n        int res = 0;\n\n        // Fill left array\n        left[0] = arr[0];\n\
+  \        for (int i = 1; i < n; i++)\n            left[i] = Math.max(left[i - 1],\
+  \ arr[i]);\n\n        // Fill right array\n        right[n - 1] = arr[n - 1];\n\
+  \        for (int i = n - 2; i >= 0; i--)\n            right[i] = Math.max(right[i\
+  \ + 1], arr[i]);\n\n        // Calculate the accumulated water element by element\n\
+  \        for (int i = 1; i < n - 1; i++) {\n            int minOf2 = Math.min(left[i\
+  \ - 1], right[i + 1]);\n            if (minOf2 > arr[i]) {\n                res\
+  \ += minOf2 - arr[i];\n            }\n        }\n\n        return res;\n    }\n\n\
+  \    public static void main(String[] args) {\n        int[] arr = { 2, 1, 5, 3,\
+  \ 1, 0, 4 };\n        System.out.println(maxWater(arr));\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 16.0

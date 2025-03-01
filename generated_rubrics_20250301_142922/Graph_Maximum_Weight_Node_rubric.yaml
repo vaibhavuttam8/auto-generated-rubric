@@ -1,0 +1,66 @@
+category: Graph
+problem_name: Maximum Weight Node
+reference_solution: "//Back-end complete function Template for Java\n\nclass Solution\
+  \ {\n    public int maxWeightCell(int[] exits) {\n        int n = exits.length;\n\
+  \        // initialize an array to store the weights\n        long weight[] = new\
+  \ long[n];\n\n        // calculate the weights of each cell based on the given edges\n\
+  \        for (int i = 0; i < n; i++) {\n            if (exits[i] != -1) {\n    \
+  \            weight[exits[i]] += i;\n            }\n        }\n\n        // initialize\
+  \ an array to store the maximum weight and its corresponding cell\n        // index\n\
+  \        long ans[] = {-1, -1};\n\n        // find the cell with the maximum weight\n\
+  \        for (int i = 0; i < n; i++) {\n            if (weight[i] >= ans[0]) ans\
+  \ = new long[] {weight[i], i};\n        }\n\n        // return the index of the\
+  \ cell with the maximum weight\n        return (int)ans[1];\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: long weight[] = new long[n];
+  item: '[Variable Initialization] Correctly initializes the weight array to store
+    weights of cells'
+  score: 2.0
+- blank: '2'
+  code_fragment: for (int i = 0; i < n; i++)
+  item: '[Main Loop Structure] Implements the main loop to iterate through each cell'
+  score: 2.0
+- blank: '3'
+  code_fragment: if (exits[i] != -1)
+  item: '[Conditional Logic] Correctly checks if the current cell has an exit'
+  score: 2.0
+- blank: '4'
+  code_fragment: weight[exits[i]] += i;
+  item: '[Weight Calculation] Updates the weight of the exit cell correctly'
+  score: 2.0
+- blank: '5'
+  code_fragment: long ans[] = {-1, -1};
+  item: '[Result Initialization] Initializes the answer array to track max weight
+    and index'
+  score: 2.0
+- blank: '6'
+  code_fragment: if (weight[i] >= ans[0])
+  item: '[Max Weight Logic] Correctly identifies if the current cell has max weight'
+  score: 2.0
+- blank: '7'
+  code_fragment: ans = new long[] {weight[i], i};
+  item: '[Result Update] Updates the answer array with new max weight and index'
+  score: 2.0
+- blank: '8'
+  code_fragment: return (int)ans[1];
+  item: '[Return Statement] Returns the index of the cell with the maximum weight'
+  score: 2.0
+- blank: '9'
+  code_fragment: weight[i] = 0;
+  item: '[Edge Case Handling] Correctly handles cells with no exits by setting weight
+    to 0'
+  score: 1.0
+- blank: '10'
+  code_fragment: exits[i] == -1
+  item: '[Edge Case Handling] Correctly identifies cells with no exits'
+  score: 1.0
+- blank: Multiple
+  code_fragment: Essential algorithm components for this problem type
+  item: '[Algorithm Correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Efficient algorithm pattern for this problem type
+  item: '[Algorithm Efficiency] Uses an efficient approach with appropriate time complexity'
+  score: 2.0
+total_points: 23.0

@@ -1,0 +1,59 @@
+category: Tree
+problem_name: Check for BST
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    private Integer prev= null;\n    // Function to check whether a Binary Tree\
+  \ is BST or not.\n    boolean isBST(Node root) {\n        // code here.\n      \
+  \  return inorderCheck(root);\n    }\n    private boolean inorderCheck(Node node)\
+  \ {\n        if (node == null) return true;\n        if (!inorderCheck(node.left))\
+  \ return false;\n        if (prev != null && node.data <= prev) return false;\n\
+  \        prev= node.data;\n        return inorderCheck(node.right);\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if(node == null)
+  item: '[Logical correctness] Checks for null node to handle base case of recursion'
+  score: 2.0
+- blank: '2'
+  code_fragment: inorderCheck(node.left)
+  item: '[Logical correctness] Recursively checks the left subtree'
+  score: 2.0
+- blank: '3'
+  code_fragment: prev != null && node.data <= prev
+  item: '[Logical correctness] Validates current node against previous node value'
+  score: 3.0
+- blank: '4'
+  code_fragment: prev = node.data
+  item: '[Logical correctness] Updates previous node value correctly'
+  score: 2.0
+- blank: '5'
+  code_fragment: inorderCheck(node.right)
+  item: '[Logical correctness] Recursively checks the right subtree'
+  score: 2.0
+- blank: '6'
+  code_fragment: return true
+  item: '[Logical correctness] Returns true for valid BST condition'
+  score: 2.0
+- blank: '7'
+  code_fragment: return false
+  item: '[Logical correctness] Returns false for invalid BST condition'
+  score: 2.0
+- blank: '8'
+  code_fragment: boolean isBST(Node root)
+  item: '[Logical correctness] Correctly defines the main function signature'
+  score: 2.0
+- blank: '9'
+  code_fragment: private Integer prev = null
+  item: '[Logical correctness] Initializes the variable to track previous node value'
+  score: 2.0
+- blank: '10'
+  code_fragment: return inorderCheck(root)
+  item: '[Logical correctness] Calls the helper function with the root node'
+  score: 2.0
+- blank: '11'
+  code_fragment: if(!inorderCheck(node.left)) return false
+  item: '[Logical correctness] Handles early exit for invalid left subtree'
+  score: 2.0
+- blank: '12'
+  code_fragment: if(!inorderCheck(node.right)) return false
+  item: '[Logical correctness] Handles early exit for invalid right subtree'
+  score: 2.0
+total_points: 25.0

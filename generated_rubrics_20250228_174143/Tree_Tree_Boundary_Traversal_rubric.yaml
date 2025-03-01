@@ -1,0 +1,68 @@
+category: Tree
+problem_name: Tree Boundary Traversal
+reference_solution: "\n\n// User function Template for Java\n/*\nclass Node\n{\n \
+  \   int data;\n    Node left, right;\n\n    public Node(int d)\n    {\n        data\
+  \ = d;\n        left = right = null;\n    }\n}\n*/\n\nclass Solution {\n    static\
+  \ boolean isLeaf(Node node){\n        return node.left == null && node.right ==\
+  \ null;\n    }\n    static void collectBoundaryLeft(Node root, ArrayList<Integer>\
+  \ res){\n        if(root == null || isLeaf(root)){\n            return;\n      \
+  \  }\n        res.add(root.data);\n        if(root.left != null){\n            collectBoundaryLeft(root.left,\
+  \ res);\n        }\n        else if(root.right != null){\n            collectBoundaryLeft(root.right,\
+  \ res);\n        }\n    } \n    static void collectLeaves(Node root, ArrayList<Integer>\
+  \ res){\n        if(root == null){\n            return;\n        }\n        if(isLeaf(root)){\n\
+  \            res.add(root.data);\n            return; \n        }\n        collectLeaves(root.left,\
+  \ res);\n        collectLeaves(root.right, res);\n    }\n    static void collectBoundaryRight(Node\
+  \ root, ArrayList<Integer> res){\n        if(root == null || isLeaf(root))\n   \
+  \     return;\n        \n        if(root.right != null){\n            collectBoundaryRight(root.right,\
+  \ res);\n        }\n        else if(root.left != null){\n            collectBoundaryRight(root.left,\
+  \ res);\n        }\n        res.add(root.data);\n    }\n    ArrayList<Integer> boundaryTraversal(Node\
+  \ root) {\n        ArrayList<Integer> res = new ArrayList<>();\n        \n     \
+  \   if(root == null){\n            return res;\n        }\n        if(!isLeaf(root)){\n\
+  \            res.add(root.data);\n        }\n        collectBoundaryLeft(root.left,\
+  \ res);\n        \n        collectLeaves(root, res);\n        collectBoundaryRight(root.right,\
+  \ res);\n        return res;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if(root == null || isLeaf(root))
+  item: '[Edge case handling] Correctly checks for null root or leaf node in boundary
+    collection'
+  score: 1.0
+- blank: '2'
+  code_fragment: res.add(root.data);
+  item: '[Logical correctness] Correctly adds the root to the result if it is not
+    a leaf'
+  score: 1.0
+- blank: '3'
+  code_fragment: collectBoundaryLeft(root.left, res);
+  item: '[Logical correctness] Properly implements left boundary collection logic'
+  score: 2.0
+- blank: '4'
+  code_fragment: collectLeaves(root.left, res);
+  item: '[Logical correctness] Correctly collects leaf nodes from the left subtree'
+  score: 2.0
+- blank: '5'
+  code_fragment: collectLeaves(root.right, res);
+  item: '[Logical correctness] Correctly collects leaf nodes from the right subtree'
+  score: 2.0
+- blank: '6'
+  code_fragment: if(root.right != null) { collectBoundaryRight(root.right, res); }
+  item: '[Logical correctness] Correctly implements right boundary collection logic'
+  score: 2.0
+- blank: '7'
+  code_fragment: res.add(root.data);
+  item: '[Logical correctness] Correctly adds nodes to the right boundary in reverse
+    order'
+  score: 2.0
+- blank: '8'
+  code_fragment: return res;
+  item: '[Logical correctness] Returns the correct result after completing the traversal'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ArrayList<Integer> res = new ArrayList<>();
+  item: '[Initialization] Correctly initializes the result list for boundary traversal'
+  score: 1.0
+- blank: Multiple
+  code_fragment: if(!isLeaf(root)) { res.add(root.data); }
+  item: '[Root handling] Correctly handles the root node in the traversal'
+  score: 2.0
+total_points: 17.0

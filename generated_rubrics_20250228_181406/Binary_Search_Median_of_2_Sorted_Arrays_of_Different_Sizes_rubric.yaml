@@ -1,0 +1,55 @@
+category: Binary Search
+problem_name: Median of 2 Sorted Arrays of Different Sizes
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    public double medianOf2(int a[], int b[]) {\n        // Your Code Here\n  \
+  \      \n        int []arr=new int[a.length+b.length];\n        int k=0;\n     \
+  \   for(int i=0;i<a.length;i++){ arr[k]=a[i]; k++; }\n          for(int j=0;j<b.length;j++){\
+  \ arr[k]=b[j]; k++; }\n          Arrays.sort(arr);\n        int mid=arr.length/2;\n\
+  \        int n=arr.length;\n        \n        if(n%2==0){\n            double median=(arr[mid]+arr[mid-1])/2.0;\n\
+  \            return median;\n        }\n        double median=arr[mid];\n      \
+  \  return median;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: int[] mergedArray = new int[a.length + b.length];
+  item: '[Initialization] Correctly initializes the merged array with the combined
+    size of both input arrays'
+  score: 1.0
+- blank: '2'
+  code_fragment: for(int i = 0; i < a.length; i++) { mergedArray[k++] = a[i]; }
+  item: '[Merging] Properly merges the first sorted array into the merged array'
+  score: 2.0
+- blank: '3'
+  code_fragment: for(int j = 0; j < b.length; j++) { mergedArray[k++] = b[j]; }
+  item: '[Merging] Properly merges the second sorted array into the merged array'
+  score: 2.0
+- blank: '4'
+  code_fragment: Arrays.sort(mergedArray);
+  item: '[Sorting] Correctly sorts the merged array'
+  score: 2.0
+- blank: '5'
+  code_fragment: int mid = mergedArray.length / 2;
+  item: '[Median Calculation] Correctly calculates the middle index of the merged
+    array'
+  score: 1.0
+- blank: '6'
+  code_fragment: if(mergedArray.length % 2 == 0) {
+  item: '[Median Calculation] Properly checks if the merged array length is even'
+  score: 1.0
+- blank: '7'
+  code_fragment: return (mergedArray[mid] + mergedArray[mid - 1]) / 2.0;
+  item: '[Median Calculation] Correctly calculates and returns the median for even-length
+    merged array'
+  score: 2.0
+- blank: '8'
+  code_fragment: return mergedArray[mid];
+  item: '[Median Calculation] Correctly returns the median for odd-length merged array'
+  score: 2.0
+- blank: '9'
+  code_fragment: if(a.length == 0 && b.length > 0) { return ...; }
+  item: '[Edge Case Handling] Properly handles the case when the first array is empty'
+  score: 1.0
+- blank: '10'
+  code_fragment: if(b.length == 0 && a.length > 0) { return ...; }
+  item: '[Edge Case Handling] Properly handles the case when the second array is empty'
+  score: 1.0
+total_points: 15.0

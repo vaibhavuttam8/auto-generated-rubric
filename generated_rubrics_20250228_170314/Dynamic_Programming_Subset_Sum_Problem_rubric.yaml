@@ -1,0 +1,46 @@
+category: Dynamic Programming
+problem_name: Subset Sum Problem
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\n\
+  \    static Boolean isSubsetSum(int arr[], int target) {\n        int[][] d = new\
+  \ int[201][40001];\n        for (int i=0; i<201; i++) {\n            for (int j=0;\
+  \ j<40001; j++) d[i][j] = Integer.MAX_VALUE;\n        }\n        return find(arr,\
+  \ arr.length-1, target, d);\n    }\n    \n    static Boolean find(int[] a, int i,\
+  \ int t, int[][] d) {\n        if (t == 0) return true;\n        if (i == 0) return\
+  \ a[i] == t;\n        if (d[i][t] != Integer.MAX_VALUE) return d[i][t] == 1;\n \
+  \       \n        boolean y = false;\n        if (t >= a[i]) y = find(a, i-1, t-a[i],\
+  \ d);\n        boolean n = find(a, i-1, t, d);\n        d[i][t] = y || n ? 1 : 0;\n\
+  \        \n        return y || n;\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length <= 1 || arr == null
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: initialization pattern specific to this problem
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: main loop pattern specific to this problem
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: conditional logic pattern specific to this problem
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: variable update pattern specific to this problem
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return pattern specific to this problem
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: Essential algorithm components for this problem type
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Efficient algorithm pattern for this problem type
+  item: '[Algorithm efficiency] Uses an efficient approach with appropriate time complexity'
+  score: 2.0
+total_points: 16.0

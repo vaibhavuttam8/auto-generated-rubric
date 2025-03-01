@@ -1,0 +1,90 @@
+category: Dynamic Programming
+problem_name: Palindromic Partitioning
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    static int palindromicPartition(String s) {\n        int n = s.length();\n\
+  \        int[]dp = new int[n];\n        Arrays.fill(dp, -1);\n        return helper(s,\
+  \ 0, dp) -1;\n    }\n    public static int helper(String str, int ind, int[]dp){\n\
+  \        if(ind == str.length()){\n            return 0;\n        }\n        if(dp[ind]\
+  \ !=-1){\n            return dp[ind];\n        }\n        String temp = \"\";\n\
+  \        int minCost = Integer.MAX_VALUE;\n        for(int j=ind; j<str.length();\
+  \ j++){\n            temp+=str.charAt(j);\n            if(isPalindrom(temp)){\n\
+  \                int cost = 1 + helper(str, j+1, dp);\n                minCost =\
+  \ Math.min(minCost, cost);\n            }\n        }\n        return dp[ind] =minCost;\n\
+  \    }\n    \n    public static boolean isPalindrom(String temp){\n        int i\
+  \ = 0;\n        int n= temp.length()-1;\n        while(i<=n){\n            if(temp.charAt(i)\
+  \ != temp.charAt(n)){\n                return false;\n            }\n          \
+  \  i++; n--;\n        }\n        return true;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: int[] dp = new int[n]
+  item: '[Dynamic Programming Initialization] Correctly initializes the DP array for
+    memoization'
+  score: 2.0
+- blank: '2'
+  code_fragment: Arrays.fill(dp, -1)
+  item: '[Dynamic Programming Initialization] Properly fills the DP array with initial
+    values'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(ind == str.length())
+  item: '[Base Case Handling] Correctly checks for the base case in the recursive
+    function'
+  score: 2.0
+- blank: '4'
+  code_fragment: if(dp[ind] != -1)
+  item: '[Memoization Check] Correctly checks if the result is already computed'
+  score: 2.0
+- blank: '5'
+  code_fragment: String temp = ""
+  item: '[Substring Initialization] Initializes a temporary string for palindrome
+    checking'
+  score: 1.0
+- blank: '6'
+  code_fragment: int minCost = Integer.MAX_VALUE
+  item: '[Cost Initialization] Initializes the minimum cost for cuts correctly'
+  score: 2.0
+- blank: '7'
+  code_fragment: for(int j = ind; j < str.length(); j++)
+  item: '[Loop Structure] Implements the loop to explore all possible partitions'
+  score: 2.0
+- blank: '8'
+  code_fragment: temp += str.charAt(j)
+  item: '[Substring Construction] Correctly constructs the substring for palindrome
+    checking'
+  score: 2.0
+- blank: '9'
+  code_fragment: if(isPalindrom(temp))
+  item: '[Palindrome Check] Correctly checks if the current substring is a palindrome'
+  score: 2.0
+- blank: '10'
+  code_fragment: int cost = 1 + helper(str, j + 1, dp)
+  item: '[Recursive Call] Correctly computes the cost of making a cut and calls the
+    helper function'
+  score: 2.0
+- blank: '11'
+  code_fragment: minCost = Math.min(minCost, cost)
+  item: '[Cost Minimization] Correctly updates the minimum cost based on the recursive
+    result'
+  score: 2.0
+- blank: '12'
+  code_fragment: return dp[ind] = minCost
+  item: '[Memoization Storage] Correctly stores the computed result in the DP array'
+  score: 2.0
+- blank: '13'
+  code_fragment: public static boolean isPalindrom(String temp)
+  item: '[Palindrome Function Definition] Correctly defines the function to check
+    for palindromes'
+  score: 2.0
+- blank: '14'
+  code_fragment: while(i <= n)
+  item: '[Palindrome Checking Loop] Implements the loop to check characters for palindrome'
+  score: 2.0
+- blank: '15'
+  code_fragment: if(temp.charAt(i) != temp.charAt(n))
+  item: '[Palindrome Logic] Correctly checks characters for palindrome validation'
+  score: 2.0
+- blank: '16'
+  code_fragment: return true
+  item: '[Palindrome Return] Correctly returns true if the substring is a palindrome'
+  score: 2.0
+total_points: 30.0

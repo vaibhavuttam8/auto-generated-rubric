@@ -1,0 +1,79 @@
+category: Bit Magic (Bitwise Operators)
+problem_name: Maximum subset XOR
+reference_solution: "// Java program to find\n// maximum XOR subset\nimport java.util.*;\n\
+  \nclass GFG {\n    \n// Number of bits to\n// represent int\nstatic final int INT_BITS\
+  \ = 32;\n\n// Function to return\n// maximum XOR subset\n// in set[]\nstatic int\
+  \ maxSubarrayXOR(int set[], int n)\n{\n    // Initialize index of\n    // chosen\
+  \ elements\n    int index = 0;\n\n    // Traverse through all\n    // bits of integer\n\
+  \    // starting from the most\n    // significant bit (MSB)\n    for (int i = INT_BITS\
+  \ - 1; i >= 0; i--) \n    {\n    // Initialize index of\n    // maximum element\
+  \ and\n    // the maximum element\n    int maxInd = index;\n    int maxEle = Integer.MIN_VALUE;\n\
+  \    for (int j = index; j < n; j++) {\n        \n        // If i'th bit of set[j]\n\
+  \        // is set and set[j] is\n        // greater than max so far.\n        if\
+  \ ((set[j] & (1 << i)) != 0 && set[j] > maxEle)\n        {\n        maxEle = set[j];\n\
+  \        maxInd = j;\n        }\n    }\n\n    // If there was no\n    // element\
+  \ with i'th\n    // bit set, move to\n    // smaller i\n    if (maxEle == -2147483648)\n\
+  \        continue;\n\n    // Put maximum element\n    // with i'th bit set\n   \
+  \ // at index 'index'\n    int temp = set[index];\n    set[index] = set[maxInd];\n\
+  \    set[maxInd] = temp;\n\n    // Update maxInd and\n    // increment index\n \
+  \   maxInd = index;\n\n    // Do XOR of set[maxIndex]\n    // with all numbers having\n\
+  \    // i'th bit as set.\n    for (int j = 0; j < n; j++) {\n        \n        //\
+  \ XOR set[maxInd] those\n        // numbers which have the\n        // i'th bit\
+  \ set\n        if (j != maxInd && (set[j] & (1 << i)) != 0)\n        set[j] = set[j]\
+  \ ^ set[maxInd];\n    }\n\n    // Increment index of\n    // chosen elements\n \
+  \   index++;\n    }\n\n    // Final result is\n    // XOR of all elements\n    int\
+  \ res = 0;\n    for (int i = 0; i < n; i++)\n    res ^= set[i];\n    return res;\n\
+  }\n\n// Driver code\npublic static void main(String arg[]) {\n    int set[] = {9,\
+  \ 8, 5};\n    int n = set.length;\n\n    System.out.print(\"Max subset XOR is \"\
+  );\n    System.out.print(maxSubarrayXOR(set, n));\n}\n}\n\n// This code is contributed\
+  \ by Anant Agarwal.\n"
+rubric_items:
+- blank: '2'
+  code_fragment: for(int i = 31; i >= 0; i--)
+  item: '[Loop structure] for(int i = 31; i >= 0; i--)'
+  score: 1.0
+- blank: '2'
+  code_fragment: 'for(int num : arr)'
+  item: '[Loop structure] for(int num : arr)'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(basis[j] == 0)
+  item: '[Conditional logic] if(basis[j] == 0)'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(basis[i] == 0)
+  item: '[Conditional logic] if(basis[i] == 0)'
+  score: 1.0
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 20.0

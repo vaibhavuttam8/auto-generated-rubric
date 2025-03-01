@@ -1,0 +1,48 @@
+category: Bit Magic (Bitwise Operators)
+problem_name: Missing in Array
+reference_solution: "class Solution {\n    int missingNumber(int arr[]) {\n      \
+  \  int xor1 = 0, xor2 = 0;\n        int n = arr.length + 1;\n\n        // XOR all\
+  \ array elements\n        for (int i = 0; i < n - 1; i++) {\n            xor2 ^=\
+  \ arr[i];\n        }\n\n        // XOR all numbers from 1 to n\n        for (int\
+  \ i = 1; i <= n; i++) {\n            xor1 ^= i;\n        }\n\n        // Missing\
+  \ number is the XOR of xor1 and xor2\n        return xor1 ^ xor2;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0 || arr.length == 1
+  item: '[Edge case handling] Correctly handles empty array or single element array'
+  score: 1.0
+- blank: '2'
+  code_fragment: int n = arr.length + 1
+  item: '[Logical correctness] Correctly initializes n to represent the full range'
+  score: 2.0
+- blank: '3'
+  code_fragment: for (int i = 0; i < n - 1; i++)
+  item: '[Logical correctness] Properly implements the loop to XOR array elements'
+  score: 2.0
+- blank: '4'
+  code_fragment: xor2 ^= arr[i]
+  item: '[Logical correctness] Correctly updates xor2 with each array element'
+  score: 2.0
+- blank: '5'
+  code_fragment: for (int i = 1; i <= n; i++)
+  item: '[Logical correctness] Properly implements the loop to XOR numbers from 1
+    to n'
+  score: 2.0
+- blank: '6'
+  code_fragment: xor1 ^= i
+  item: '[Logical correctness] Correctly updates xor1 with each number from 1 to n'
+  score: 2.0
+- blank: '7'
+  code_fragment: return xor1 ^ xor2
+  item: '[Logical correctness] Returns the correct missing number using XOR'
+  score: 2.0
+- blank: '8'
+  code_fragment: Efficient algorithm with O(n) time complexity
+  item: '[Algorithm efficiency] Implements an efficient solution with linear time
+    complexity'
+  score: 2.0
+- blank: '9'
+  code_fragment: Uses O(1) additional space
+  item: '[Space efficiency] Utilizes constant space for variable storage'
+  score: 2.0
+total_points: 17.0

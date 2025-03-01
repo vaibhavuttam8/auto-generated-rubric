@@ -1,0 +1,59 @@
+category: Strings
+problem_name: Longest Common Substring
+reference_solution: "class Solution {\n    int longestCommonSubstr(String str1, String\
+  \ str2) {\n        int n = str1.length(), m = str2.length();\n        int dp[][]\
+  \ = new int[1001][1001];\n        // dp[i][j] stores the longest common substring\
+  \ length\n        // in s1[0...i-1] and s2[0....j-1]\n\n        // if one of strings\
+  \ have length zero, longest common substring\n        // will also be of 0 length\n\
+  \        for (int i = 0; i < n; ++i) dp[i][0] = 0;\n\n        for (int i = 0; i\
+  \ < m; ++i) dp[0][i] = 0;\n\n        int res = 0; // ans\n        for (int i = 1;\
+  \ i <= n; ++i) {\n            for (int j = 1; j <= m; ++j) {\n                //\
+  \ if current characters are same, we increase the length by 1\n                if\
+  \ (str1.charAt(i - 1) == str2.charAt(j - 1))\n                    dp[i][j] = 1 +\
+  \ dp[i - 1][j - 1];\n                // else, there's no common substring ending\
+  \ at i - 1 and j - 1\n                else\n                    dp[i][j] = 0;\n\n\
+  \                res = Math.max(res, dp[i][j]); // storing the answer\n        \
+  \    }\n        }\n        return res;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if (str1.length() == 0 || str2.length() == 0)
+  item: '[Edge case handling] Correctly handles cases where one or both strings are
+    empty'
+  score: 1.0
+- blank: '2'
+  code_fragment: int dp[][] = new int[n + 1][m + 1]
+  item: '[Initialization] Correctly initializes the DP array with dimensions based
+    on input string lengths'
+  score: 2.0
+- blank: '3'
+  code_fragment: for (int i = 1; i <= n; ++i)
+  item: '[Loop structure] Implements the outer loop iterating over the length of str1'
+  score: 2.0
+- blank: '4'
+  code_fragment: for (int j = 1; j <= m; ++j)
+  item: '[Loop structure] Implements the inner loop iterating over the length of str2'
+  score: 2.0
+- blank: '5'
+  code_fragment: if (str1.charAt(i - 1) == str2.charAt(j - 1))
+  item: '[Conditional logic] Correctly checks if characters from both strings match'
+  score: 2.0
+- blank: '6'
+  code_fragment: dp[i][j] = 1 + dp[i - 1][j - 1]
+  item: '[Dynamic programming update] Correctly updates the DP table for matching
+    characters'
+  score: 2.0
+- blank: '7'
+  code_fragment: else dp[i][j] = 0
+  item: '[Dynamic programming update] Correctly resets the DP table entry for non-matching
+    characters'
+  score: 2.0
+- blank: '8'
+  code_fragment: res = Math.max(res, dp[i][j])
+  item: '[Result tracking] Correctly updates the result variable with the maximum
+    length found'
+  score: 2.0
+- blank: '9'
+  code_fragment: return res
+  item: '[Return value] Correctly returns the length of the longest common substring'
+  score: 2.0
+total_points: 17.0

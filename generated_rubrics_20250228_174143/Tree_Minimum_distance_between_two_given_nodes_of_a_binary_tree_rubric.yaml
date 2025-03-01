@@ -1,0 +1,81 @@
+category: Tree
+problem_name: Minimum distance between two given nodes of a binary tree
+reference_solution: "\n\n// FUNCTION CODE\n/* A Binary Tree node\nclass Node\n{\n\
+  \    int data;\n    Node left, right;\n   Node(int item)    {\n        data = item;\n\
+  \        left = right = null;\n    }\n} */\n\n/* Should return minimum distance\
+  \ between a and b\n   in a tree with given root*/\n   class GfG {\n    private HashMap<Node,\
+  \ Node> parent = new HashMap<>();\n    private int ans = 0;\n\n    private void\
+  \ mapParent(Node root, Node[] targets, int first, int second){\n        Queue<Node>\
+  \ q = new LinkedList<>();\n        q.add(root);\n\n        while(!q.isEmpty()){\n\
+  \            Node curr = q.poll();\n\n            if(curr.data == first) targets[0]\
+  \ = curr;\n            if(curr.data == second) targets[1] = curr;\n\n          \
+  \  if(curr.left != null){\n                parent.put(curr.left, curr);\n      \
+  \          q.add(curr.left);\n            }\n            if(curr.right != null){\n\
+  \                parent.put(curr.right, curr);\n                q.add(curr.right);\n\
+  \            }\n        }\n    }\n\n    private void solve(Node root, Node tNode,\
+  \ Map<Node, Boolean> vis, int count){\n        if(root == null)    return;\n   \
+  \     if(root.data == tNode.data){\n            ans = count;\n            return;\n\
+  \        }\n        vis.put(root, true);\n        count++;\n\n        if(root.left\
+  \ != null && !vis.getOrDefault(root.left, false))\n            solve(root.left,\
+  \ tNode, vis, count);\n        if(root.right != null && !vis.getOrDefault(root.right,\
+  \ false))\n            solve(root.right, tNode, vis, count);\n        if(parent.containsKey(root)\
+  \ && !vis.getOrDefault(parent.get(root), false))\n            solve(parent.get(root),\
+  \ tNode, vis, count);\n\n        vis.put(root, false);\n        count--;\n    }\n\
+  \    int findDist(Node root, int a, int b) {\n        // Your code here\n      \
+  \   Node[] targets = new Node[2];\n        mapParent(root, targets, a, b);\n\n \
+  \       Map<Node, Boolean> vis = new HashMap<>();\n        int count = 0;\n    \
+  \    solve(targets[0], targets[1], vis, count);\n        return ans;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if(root == null)
+  item: '[Edge case handling] Checks if the current node is null'
+  score: 1.0
+- blank: '2'
+  code_fragment: if(curr.data == first) targets[0] = curr
+  item: '[Node identification] Correctly identifies the first target node'
+  score: 2.0
+- blank: '3'
+  code_fragment: if(curr.data == second) targets[1] = curr
+  item: '[Node identification] Correctly identifies the second target node'
+  score: 2.0
+- blank: '4'
+  code_fragment: parent.put(curr.left, curr)
+  item: '[Parent mapping] Maps the parent of the left child correctly'
+  score: 2.0
+- blank: '5'
+  code_fragment: parent.put(curr.right, curr)
+  item: '[Parent mapping] Maps the parent of the right child correctly'
+  score: 2.0
+- blank: '6'
+  code_fragment: Map<Node, Boolean> vis = new HashMap<>()
+  item: '[Visited nodes tracking] Initializes a map to track visited nodes'
+  score: 1.0
+- blank: '7'
+  code_fragment: solve(targets[0], targets[1], vis, count)
+  item: '[Recursive traversal] Calls the recursive function to calculate distance'
+  score: 2.0
+- blank: '8'
+  code_fragment: if(root.data == tNode.data)
+  item: '[Distance calculation] Checks if the current node is the target node'
+  score: 2.0
+- blank: '9'
+  code_fragment: vis.put(root, true)
+  item: '[Visited nodes tracking] Marks the current node as visited'
+  score: 1.0
+- blank: '10'
+  code_fragment: vis.put(root, false)
+  item: '[Visited nodes tracking] Unmarks the current node after backtracking'
+  score: 1.0
+- blank: '11'
+  code_fragment: return ans
+  item: '[Result return] Returns the calculated minimum distance'
+  score: 2.0
+- blank: '12'
+  code_fragment: int count = 0
+  item: '[Initialization] Initializes the distance counter'
+  score: 1.0
+- blank: Multiple
+  code_fragment: Efficient algorithm pattern for this problem type
+  item: '[Algorithm efficiency] Uses an efficient approach with appropriate time complexity'
+  score: 3.0
+total_points: 22.0

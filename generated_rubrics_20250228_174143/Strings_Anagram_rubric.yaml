@@ -1,0 +1,68 @@
+category: Strings
+problem_name: Anagram
+reference_solution: "// Java Code to check if two Strings are anagram of \n// each\
+  \ other using Frequency Array\n\nclass GfG {\n\n    // As the input strings can\
+  \ only have lowercase \n    // characters, the maximum characters will be 26\n \
+  \   static final int MAX_CHAR = 26;\n\n    static boolean areAnagrams(String s1,\
+  \ String s2) {\n        int[] freq = new int[MAX_CHAR];\n\n        // Count frequency\
+  \ of each character in string s1\n        for (int i = 0; i < s1.length(); i++)\n\
+  \            freq[s1.charAt(i) - 'a']++;\n\n        // Count frequency of each character\
+  \ in string s2\n        for (int i = 0; i < s2.length(); i++)\n            freq[s2.charAt(i)\
+  \ - 'a']--;\n\n        // Check if all frequencies are zero\n        for (int count\
+  \ : freq) {\n            if (count != 0)\n                return false;\n      \
+  \  }\n\n        return true;\n    }\n\n    public static void main(String[] args)\
+  \ {\n        String s1 = \"geeks\";\n        String s2 = \"kseeg\";\n        System.out.println(areAnagrams(s1,\
+  \ s2));\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: s1.length() != s2.length()
+  item: '[Edge case handling] Checks if the lengths of the strings are equal before
+    proceeding'
+  score: 2.0
+- blank: '2'
+  code_fragment: int[] freq = new int[26]
+  item: '[Logical correctness] Correctly initializes a frequency array for 26 lowercase
+    letters'
+  score: 2.0
+- blank: '3'
+  code_fragment: for (int i = 0; i < s1.length(); i++)
+  item: '[Logical correctness] Implements a loop to count character frequencies in
+    s1'
+  score: 2.0
+- blank: '4'
+  code_fragment: freq[s1.charAt(i) - 'a']++
+  item: '[Logical correctness] Correctly updates the frequency array for characters
+    in s1'
+  score: 2.0
+- blank: '5'
+  code_fragment: for (int i = 0; i < s2.length(); i++)
+  item: '[Logical correctness] Implements a loop to count character frequencies in
+    s2'
+  score: 2.0
+- blank: '6'
+  code_fragment: freq[s2.charAt(i) - 'a']--
+  item: '[Logical correctness] Correctly updates the frequency array for characters
+    in s2'
+  score: 2.0
+- blank: '7'
+  code_fragment: 'for (int count : freq)'
+  item: '[Logical correctness] Implements a loop to check the frequency array for
+    zero values'
+  score: 2.0
+- blank: '8'
+  code_fragment: if (count != 0)
+  item: '[Logical correctness] Correctly checks if any frequency is not zero'
+  score: 2.0
+- blank: '9'
+  code_fragment: return false
+  item: '[Logical correctness] Returns false if any frequency is not zero'
+  score: 2.0
+- blank: '10'
+  code_fragment: return true
+  item: '[Logical correctness] Returns true if all frequencies are zero'
+  score: 2.0
+- blank: Multiple
+  code_fragment: O(n)
+  item: '[Algorithm efficiency] Uses an efficient approach with O(n) time complexity'
+  score: 2.0
+total_points: 22.0

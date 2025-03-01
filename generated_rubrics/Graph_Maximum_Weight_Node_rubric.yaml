@@ -1,0 +1,67 @@
+category: Graph
+problem_name: Maximum Weight Node
+reference_solution: "//Back-end complete function Template for Java\n\nclass Solution\
+  \ {\n    public int maxWeightCell(int[] exits) {\n        int n = exits.length;\n\
+  \        // initialize an array to store the weights\n        long weight[] = new\
+  \ long[n];\n\n        // calculate the weights of each cell based on the given edges\n\
+  \        for (int i = 0; i < n; i++) {\n            if (exits[i] != -1) {\n    \
+  \            weight[exits[i]] += i;\n            }\n        }\n\n        // initialize\
+  \ an array to store the maximum weight and its corresponding cell\n        // index\n\
+  \        long ans[] = {-1, -1};\n\n        // find the cell with the maximum weight\n\
+  \        for (int i = 0; i < n; i++) {\n            if (weight[i] >= ans[0]) ans\
+  \ = new long[] {weight[i], i};\n        }\n\n        // return the index of the\
+  \ cell with the maximum weight\n        return (int)ans[1];\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: ans = -1
+  item: '[Variable initialization] ans = -1'
+  score: 1.0
+- blank: '2'
+  code_fragment: for(int i = 0; i < exits.length; i++)
+  item: '[Loop structure] for(int i = 0; i < exits.length; i++)'
+  score: 1.0
+- blank: '2'
+  code_fragment: for(int i =0 ; i<exits.length ;i++)
+  item: '[Loop structure] for(int i =0 ; i<exits.length ;i++)'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(exits[i]==-1)
+  item: '[Conditional logic] if(exits[i]==-1)'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(exits[i] != -1)
+  item: '[Conditional logic] if(exits[i] != -1)'
+  score: 1.0
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 21.0

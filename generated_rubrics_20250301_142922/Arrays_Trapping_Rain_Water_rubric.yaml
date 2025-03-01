@@ -1,0 +1,65 @@
+category: Arrays
+problem_name: Trapping Rain Water
+reference_solution: "import java.util.*;\n\nclass GfG {\n    static int maxWater(int[]\
+  \ arr) {\n        int n = arr.length;\n\n        // Left[i] contains height of tallest\
+  \ bar to the\n        // left of i'th bar including itself\n        int[] left =\
+  \ new int[n];\n\n        // Right[i] contains height of tallest bar to\n       \
+  \ // the right of i'th bar including itself\n        int[] right = new int[n];\n\
+  \n        int res = 0;\n\n        // Fill left array\n        left[0] = arr[0];\n\
+  \        for (int i = 1; i < n; i++)\n            left[i] = Math.max(left[i - 1],\
+  \ arr[i]);\n\n        // Fill right array\n        right[n - 1] = arr[n - 1];\n\
+  \        for (int i = n - 2; i >= 0; i--)\n            right[i] = Math.max(right[i\
+  \ + 1], arr[i]);\n\n        // Calculate the accumulated water element by element\n\
+  \        for (int i = 1; i < n - 1; i++) {\n            int minOf2 = Math.min(left[i\
+  \ - 1], right[i + 1]);\n            if (minOf2 > arr[i]) {\n                res\
+  \ += minOf2 - arr[i];\n            }\n        }\n\n        return res;\n    }\n\n\
+  \    public static void main(String[] args) {\n        int[] arr = { 2, 1, 5, 3,\
+  \ 1, 0, 4 };\n        System.out.println(maxWater(arr));\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length <= 1 || arr == null
+  item: '[Edge case handling] Correctly handles empty array or single element array'
+  score: 1.0
+- blank: '2'
+  code_fragment: int[] left = new int[n];
+  item: '[Initialization] Correctly initializes left and right arrays'
+  score: 2.0
+- blank: '3'
+  code_fragment: left[0] = arr[0];
+  item: '[Initialization] Correctly initializes the first element of the left array'
+  score: 1.0
+- blank: '4'
+  code_fragment: for (int i = 1; i < n; i++) left[i] = Math.max(left[i - 1], arr[i]);
+  item: '[Left array filling] Properly fills the left array with maximum heights'
+  score: 2.0
+- blank: '5'
+  code_fragment: right[n - 1] = arr[n - 1];
+  item: '[Initialization] Correctly initializes the last element of the right array'
+  score: 1.0
+- blank: '6'
+  code_fragment: for (int i = n - 2; i >= 0; i--) right[i] = Math.max(right[i + 1],
+    arr[i]);
+  item: '[Right array filling] Properly fills the right array with maximum heights'
+  score: 2.0
+- blank: '7'
+  code_fragment: for (int i = 1; i < n - 1; i++)
+  item: '[Main loop] Implements the main loop to calculate trapped water'
+  score: 2.0
+- blank: '8'
+  code_fragment: int minOf2 = Math.min(left[i - 1], right[i + 1]);
+  item: '[Water calculation] Correctly calculates the minimum height for water trapping'
+  score: 2.0
+- blank: '9'
+  code_fragment: if (minOf2 > arr[i]) res += minOf2 - arr[i];
+  item: '[Water calculation] Correctly updates the result based on water trapping
+    condition'
+  score: 2.0
+- blank: '10'
+  code_fragment: return res;
+  item: '[Return value] Returns the correct total amount of trapped water'
+  score: 2.0
+- blank: '11'
+  code_fragment: O(n)
+  item: '[Time complexity] Implements an efficient algorithm with O(n) time complexity'
+  score: 2.0
+total_points: 19.0

@@ -1,0 +1,39 @@
+category: Dynamic Programming
+problem_name: Nth Fibonacci Number
+reference_solution: "class Solution {\n    public int nthFibonacci(int n) {\n    \
+  \    return fib(n);\n    }\n    public static int fib(int n){\n        if(n<=1){\n\
+  \            return n;\n        }\n        return fib(n-1)+fib(n-2);\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if(n < 0) {
+  item: '[Edge case handling] Checks for negative input values'
+  score: 1.0
+- blank: '2'
+  code_fragment: if(n == 0 || n == 1) {
+  item: '[Base case handling] Correctly identifies base cases for Fibonacci'
+  score: 2.0
+- blank: '3'
+  code_fragment: return fib(n - 1) + fib(n - 2);
+  item: '[Recursive logic] Implements the recursive formula for Fibonacci correctly'
+  score: 3.0
+- blank: '4'
+  code_fragment: public int nthFibonacci(int n) {
+  item: '[Method signature] Correctly defines the method signature for nthFibonacci'
+  score: 1.0
+- blank: '5'
+  code_fragment: return n;
+  item: '[Return statement] Correctly returns the Fibonacci number for base cases'
+  score: 2.0
+- blank: '6'
+  code_fragment: public static int fib(int n) {
+  item: '[Method definition] Correctly defines the helper method for Fibonacci calculation'
+  score: 1.0
+- blank: Multiple
+  code_fragment: int result = fib(n);
+  item: '[Variable assignment] Correctly assigns the result of the Fibonacci calculation'
+  score: 2.0
+- blank: Multiple
+  code_fragment: int n = ...;
+  item: '[Input handling] Correctly handles input assignment for Fibonacci calculation'
+  score: 1.0
+total_points: 13.0

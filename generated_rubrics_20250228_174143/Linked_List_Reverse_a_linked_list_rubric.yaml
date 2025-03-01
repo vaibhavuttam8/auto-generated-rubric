@@ -1,0 +1,74 @@
+category: Linked List
+problem_name: Reverse a linked list
+reference_solution: "// Iterative Java program to reverse a linked list\n\nclass Node\
+  \ {\n    int data;\n    Node next;\n\n    Node(int new_data) {\n        data = new_data;\n\
+  \        next = null;\n    }\n}\n\n// Given the head of a list, reverse the list\
+  \ and return the\n// head of reversed list\nclass GfG {\n     static Node reverseList(Node\
+  \ head) {\n        \n        // Initialize three pointers: curr, prev and next\n\
+  \        Node curr = head, prev = null, next;\n\n        // Traverse all the nodes\
+  \ of Linked List\n        while (curr != null) {\n            \n            // Store\
+  \ next\n            next = curr.next;\n            \n            // Reverse current\
+  \ node's next pointer\n            curr.next = prev;\n            \n           \
+  \ // Move pointers one position ahead\n            prev = curr;\n            curr\
+  \ = next;\n        }\n        \n        // Return the head of reversed linked list\n\
+  \        return prev;\n    }\n\n    // This function prints the contents\n    //\
+  \ of the linked list starting from the head\n    static void printList(Node node)\
+  \ {\n        while (node != null) {\n            System.out.print(\" \" + node.data);\n\
+  \            node = node.next;\n        }\n    }\n\n    public static void main(String[]\
+  \ args) {\n\n        // Create a hard-coded linked list:\n        // 1 -> 2 -> 3\
+  \ -> 4 -> 5\n        Node head = new Node(1);\n        head.next = new Node(2);\n\
+  \        head.next.next = new Node(3);\n        head.next.next.next = new Node(4);\n\
+  \        head.next.next.next.next = new Node(5);\n\n        System.out.print(\"\
+  Given Linked list:\");\n        printList(head);\n        \n        head = reverseList(head);\n\
+  \n        System.out.print(\"\\nReversed Linked List:\");\n        printList(head);\n\
+  \    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: curr = next
+  item: '[Variable initialization] curr = next'
+  score: 1.0
+- blank: '1'
+  code_fragment: curr = head
+  item: '[Variable initialization] curr = head'
+  score: 1.0
+- blank: '1'
+  code_fragment: curr = temp
+  item: '[Variable initialization] curr = temp'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(head == null)
+  item: '[Conditional logic] if(head == null)'
+  score: 1.0
+- blank: '5'
+  code_fragment: head == null || head.next == null
+  item: '[Edge case handling] Handles null or single node list'
+  score: 1.0
+- blank: '1'
+  code_fragment: initialization pattern specific to this problem
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: main loop pattern specific to this problem
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: conditional logic pattern specific to this problem
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: variable update pattern specific to this problem
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return pattern specific to this problem
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: Essential algorithm components for this problem type
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Efficient algorithm pattern for this problem type
+  item: '[Algorithm efficiency] Uses an efficient approach with appropriate time complexity'
+  score: 2.0
+total_points: 20.0

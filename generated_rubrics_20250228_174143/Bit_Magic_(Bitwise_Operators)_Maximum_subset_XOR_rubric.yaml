@@ -1,0 +1,84 @@
+category: Bit Magic (Bitwise Operators)
+problem_name: Maximum subset XOR
+reference_solution: "// Java program to find\n// maximum XOR subset\nimport java.util.*;\n\
+  \nclass GFG {\n    \n// Number of bits to\n// represent int\nstatic final int INT_BITS\
+  \ = 32;\n\n// Function to return\n// maximum XOR subset\n// in set[]\nstatic int\
+  \ maxSubarrayXOR(int set[], int n)\n{\n    // Initialize index of\n    // chosen\
+  \ elements\n    int index = 0;\n\n    // Traverse through all\n    // bits of integer\n\
+  \    // starting from the most\n    // significant bit (MSB)\n    for (int i = INT_BITS\
+  \ - 1; i >= 0; i--) \n    {\n    // Initialize index of\n    // maximum element\
+  \ and\n    // the maximum element\n    int maxInd = index;\n    int maxEle = Integer.MIN_VALUE;\n\
+  \    for (int j = index; j < n; j++) {\n        \n        // If i'th bit of set[j]\n\
+  \        // is set and set[j] is\n        // greater than max so far.\n        if\
+  \ ((set[j] & (1 << i)) != 0 && set[j] > maxEle)\n        {\n        maxEle = set[j];\n\
+  \        maxInd = j;\n        }\n    }\n\n    // If there was no\n    // element\
+  \ with i'th\n    // bit set, move to\n    // smaller i\n    if (maxEle == -2147483648)\n\
+  \        continue;\n\n    // Put maximum element\n    // with i'th bit set\n   \
+  \ // at index 'index'\n    int temp = set[index];\n    set[index] = set[maxInd];\n\
+  \    set[maxInd] = temp;\n\n    // Update maxInd and\n    // increment index\n \
+  \   maxInd = index;\n\n    // Do XOR of set[maxIndex]\n    // with all numbers having\n\
+  \    // i'th bit as set.\n    for (int j = 0; j < n; j++) {\n        \n        //\
+  \ XOR set[maxInd] those\n        // numbers which have the\n        // i'th bit\
+  \ set\n        if (j != maxInd && (set[j] & (1 << i)) != 0)\n        set[j] = set[j]\
+  \ ^ set[maxInd];\n    }\n\n    // Increment index of\n    // chosen elements\n \
+  \   index++;\n    }\n\n    // Final result is\n    // XOR of all elements\n    int\
+  \ res = 0;\n    for (int i = 0; i < n; i++)\n    res ^= set[i];\n    return res;\n\
+  }\n\n// Driver code\npublic static void main(String arg[]) {\n    int set[] = {9,\
+  \ 8, 5};\n    int n = set.length;\n\n    System.out.print(\"Max subset XOR is \"\
+  );\n    System.out.print(maxSubarrayXOR(set, n));\n}\n}\n\n// This code is contributed\
+  \ by Anant Agarwal.\n"
+rubric_items:
+- blank: '1'
+  code_fragment: if(arr == null || arr.length <= 1)
+  item: '[Input Validation] Checks if the array is null or has one element'
+  score: 2.0
+- blank: '1'
+  code_fragment: static final int INT_BITS = 32;
+  item: '[Bit Count Initialization] Correctly initializes the number of bits for integer
+    representation'
+  score: 1.0
+- blank: '2'
+  code_fragment: for (int i = INT_BITS - 1; i >= 0; i--)
+  item: '[Outer Loop Structure] Implements the outer loop iterating over bits from
+    MSB to LSB'
+  score: 2.0
+- blank: '1'
+  code_fragment: int maxInd = index; int maxEle = Integer.MIN_VALUE;
+  item: '[Max Element Initialization] Initializes variables for tracking the maximum
+    element'
+  score: 2.0
+- blank: '2'
+  code_fragment: for (int j = index; j < n; j++)
+  item: '[Inner Loop Structure] Implements the inner loop to find the maximum element
+    with the i-th bit set'
+  score: 2.0
+- blank: '3'
+  code_fragment: if ((set[j] & (1 << i)) != 0 && set[j] > maxEle)
+  item: '[Conditional Logic for Max Element] Correctly checks if the i-th bit is set
+    and updates max element'
+  score: 2.0
+- blank: '1'
+  code_fragment: int temp = set[index]; set[index] = set[maxInd]; set[maxInd] = temp;
+  item: '[Element Swap Logic] Implements the logic to swap the maximum element to
+    the current index'
+  score: 2.0
+- blank: '3'
+  code_fragment: if (j != maxInd && (set[j] & (1 << i)) != 0) set[j] = set[j] ^ set[maxInd];
+  item: '[XOR Operation Logic] Correctly performs XOR operation on elements with the
+    i-th bit set'
+  score: 2.0
+- blank: '1'
+  code_fragment: for (int i = 0; i < n; i++) res ^= set[i];
+  item: '[Final Result Calculation] Correctly calculates the final result by XORing
+    all elements'
+  score: 2.0
+- blank: '1'
+  code_fragment: return res;
+  item: '[Return Statement] Returns the correct maximum subset XOR value'
+  score: 2.0
+- blank: Multiple
+  code_fragment: O(N * Log(max(arr[i])))
+  item: '[Algorithm Efficiency] Implements the algorithm with the expected time complexity
+    O(N*Log(max(arr[i])))'
+  score: 3.0
+total_points: 22.0

@@ -1,0 +1,54 @@
+category: Binary Search
+problem_name: First 1 in a Sorted Binary Array
+reference_solution: "// User function Template for Java\n\nclass Solution {\n\n  \
+  \  public long firstIndex(int arr[]) {\n        // Your code goes here\n       \
+  \ int low = 0;\n        int high = arr.length - 1;\n        \n        while (low\
+  \ <= high) {\n            int mid = low + ((high - low) >> 1);\n            if (arr[mid]\
+  \ == 1) high = mid - 1;\n            else low = mid + 1;\n        }\n        \n\
+  \        if (low == arr.length) return -1;\n        return low;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0 || arr == null
+  item: '[Edge case handling] Correctly checks for empty or null array'
+  score: 1.0
+- blank: '2'
+  code_fragment: int low = 0; int high = arr.length - 1;
+  item: '[Initialization] Correctly initializes low and high pointers'
+  score: 2.0
+- blank: '3'
+  code_fragment: while (low <= high)
+  item: '[Loop structure] Implements the correct loop structure for binary search'
+  score: 2.0
+- blank: '4'
+  code_fragment: int mid = low + ((high - low) >> 1);
+  item: '[Midpoint calculation] Correctly calculates the midpoint to avoid overflow'
+  score: 2.0
+- blank: '5'
+  code_fragment: if (arr[mid] == 1)
+  item: '[Conditional logic] Correctly checks if the midpoint value is 1'
+  score: 2.0
+- blank: '6'
+  code_fragment: high = mid - 1;
+  item: '[Update logic] Correctly updates high pointer when 1 is found'
+  score: 2.0
+- blank: '7'
+  code_fragment: low = mid + 1;
+  item: '[Update logic] Correctly updates low pointer when 0 is found'
+  score: 2.0
+- blank: '8'
+  code_fragment: if (low == arr.length) return -1;
+  item: '[Return logic] Correctly checks if no 1 was found and returns -1'
+  score: 2.0
+- blank: '9'
+  code_fragment: return low;
+  item: '[Return logic] Correctly returns the index of the first 1'
+  score: 2.0
+- blank: '10'
+  code_fragment: O(log(n))
+  item: '[Time complexity] Implements the algorithm with O(log(n)) time complexity'
+  score: 2.0
+- blank: '11'
+  code_fragment: O(1)
+  item: '[Space complexity] Uses O(1) auxiliary space'
+  score: 2.0
+total_points: 21.0

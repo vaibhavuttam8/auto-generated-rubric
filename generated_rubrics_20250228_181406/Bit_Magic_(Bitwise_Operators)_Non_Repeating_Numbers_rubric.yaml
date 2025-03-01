@@ -1,0 +1,64 @@
+category: Bit Magic (Bitwise Operators)
+problem_name: Non Repeating Numbers
+reference_solution: "class Solution {\n    public List<Integer> singleNumber(int[]\
+  \ arr) {\n        // Step 1: Get the XOR of the two unique numbers\n        int\
+  \ diff = 0;\n        for (int num : arr) {\n            diff ^= num;\n        }\n\
+  \n        // Step 2: Isolate the rightmost set bit in diff\n        diff &= -diff;\n\
+  \n        // Step 3: Divide numbers into two groups and XOR to find unique numbers\n\
+  \        int num1 = 0, num2 = 0;\n        for (int num : arr) {\n            if\
+  \ ((num & diff) == 0) // If the bit is not set\n            {\n                num1\
+  \ ^= num;\n            } else // If the bit is set\n            {\n            \
+  \    num2 ^= num;\n            }\n        }\n\n        // Step 4: Add numbers to\
+  \ the list in sorted order\n        List<Integer> result = new ArrayList<>();\n\
+  \        if (num1 < num2) {\n            result.add(num1);\n            result.add(num2);\n\
+  \        } else {\n            result.add(num2);\n            result.add(num1);\n\
+  \        }\n\n        return result;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length <= 1 || arr == null
+  item: '[Edge case handling] Correctly handles empty array or single element array'
+  score: 1.0
+- blank: '2'
+  code_fragment: int diff = 0;
+  item: '[Initialization] Correctly initializes the diff variable to 0'
+  score: 1.0
+- blank: '3'
+  code_fragment: 'for (int num : arr) { diff ^= num; }'
+  item: '[XOR Calculation] Properly implements the XOR loop to find the combined XOR
+    of all elements'
+  score: 2.0
+- blank: '4'
+  code_fragment: diff &= -diff;
+  item: '[Isolate Bit] Correctly isolates the rightmost set bit in the diff variable'
+  score: 2.0
+- blank: '5'
+  code_fragment: int num1 = 0, num2 = 0;
+  item: '[Initialization] Correctly initializes variables num1 and num2 for the unique
+    numbers'
+  score: 1.0
+- blank: '6'
+  code_fragment: if ((num & diff) == 0) { num1 ^= num; } else { num2 ^= num; }
+  item: '[Grouping Logic] Correctly divides numbers into two groups based on the isolated
+    bit'
+  score: 2.0
+- blank: '7'
+  code_fragment: List<Integer> result = new ArrayList<>();
+  item: '[Result Initialization] Correctly initializes the result list to store the
+    final output'
+  score: 1.0
+- blank: '8'
+  code_fragment: if (num1 < num2) { result.add(num1); result.add(num2); } else { result.add(num2);
+    result.add(num1); }
+  item: '[Sorting Logic] Correctly adds the unique numbers to the result list in increasing
+    order'
+  score: 2.0
+- blank: '9'
+  code_fragment: return result;
+  item: '[Return Statement] Correctly returns the result list containing the two unique
+    numbers'
+  score: 1.0
+- blank: '10'
+  code_fragment: O(n)
+  item: '[Algorithm Efficiency] Implements an efficient algorithm with O(n) time complexity'
+  score: 2.0
+total_points: 15.0

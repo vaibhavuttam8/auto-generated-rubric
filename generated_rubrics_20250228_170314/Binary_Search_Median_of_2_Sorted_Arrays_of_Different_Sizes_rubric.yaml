@@ -1,0 +1,48 @@
+category: Binary Search
+problem_name: Median of 2 Sorted Arrays of Different Sizes
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    public double medianOf2(int a[], int b[]) {\n        // Your Code Here\n  \
+  \      \n        int []arr=new int[a.length+b.length];\n        int k=0;\n     \
+  \   for(int i=0;i<a.length;i++){\n            arr[k]=a[i];\n            k++;\n \
+  \       }\n          for(int j=0;j<b.length;j++){\n            arr[k]=b[j];\n  \
+  \          k++;\n        }\n          Arrays.sort(arr);\n        int mid=arr.length/2;\n\
+  \        int n=arr.length;\n        \n        if(n%2==0){\n            double median=(arr[mid]+arr[mid-1])/2.0;\n\
+  \            return median;\n        }\n        double median=arr[mid];\n      \
+  \  return median;\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length == 0 || arr == null || targetNotFound
+  item: '[Edge case handling] Handles empty array, single element array, or target
+    not found'
+  score: 1.0
+- blank: '1'
+  code_fragment: int left = 0; int right = arr.length - 1;
+  item: '[Logical correctness] Correctly initializes left and right pointers for binary
+    search'
+  score: 2.0
+- blank: '2'
+  code_fragment: while(left <= right)
+  item: '[Logical correctness] Properly implements binary search loop'
+  score: 2.0
+- blank: '3'
+  code_fragment: int mid = left + (right - left) / 2; if(arr[mid] == target)
+  item: '[Logical correctness] Correctly calculates middle point and compares with
+    target'
+  score: 2.0
+- blank: Multiple
+  code_fragment: if(arr[mid] < target) left = mid + 1; else right = mid - 1;
+  item: '[Logical correctness] Properly updates search boundaries based on comparison'
+  score: 2.0
+- blank: Multiple
+  code_fragment: 'return found ? index : -1;'
+  item: '[Logical correctness] Returns appropriate result based on search outcome'
+  score: 2.0
+- blank: Multiple
+  code_fragment: mid calculation _AND comparison with target _AND boundary updates
+  item: '[Algorithm correctness] Correctly implements binary search algorithm'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Binary division _AND no linear scanning
+  item: '[Algorithm efficiency] Uses binary search with O(log n) time complexity'
+  score: 2.0
+total_points: 16.0

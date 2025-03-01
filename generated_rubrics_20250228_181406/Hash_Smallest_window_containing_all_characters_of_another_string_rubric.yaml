@@ -1,0 +1,81 @@
+category: Hash
+problem_name: Smallest window containing all characters of another string
+reference_solution: "class Solution {\n    // Function to find the smallest window\
+  \ in the string s1 consisting\n    // of all the characters of string s2.\n    public\
+  \ static String smallestWindow(String s1, String s2) {\n\n        int len1 = s1.length();\n\
+  \        int len2 = s2.length();\n\n        // if length of string s2 is greater\
+  \ than string s1 then we return -1.\n        if (len1 < len2) {\n            return\
+  \ \"\";\n        }\n\n        // using hash tables to store the count of characters\
+  \ in strings.\n        int[] hash_pat = new int[256];\n        int[] hash_str =\
+  \ new int[256];\n\n        // storing the count of characters in string s2 in hash\
+  \ table.\n        for (int i = 0; i < len2; i++) {\n            hash_pat[s2.charAt(i)]++;\n\
+  \        }\n\n        int start = 0;\n        int start_index = -1;\n        int\
+  \ min_len = Integer.MAX_VALUE;\n        int count = 0;\n        for (int j = 0;\
+  \ j < len1; j++) {\n            // storing the count of characters in string s1\
+  \ in hash table.\n            hash_str[s1.charAt(j)]++;\n\n            // if count\
+  \ of current character in string s1 is equal to or less\n            // than in\
+  \ string s2, we increment the counter.\n            if (hash_pat[s1.charAt(j)] !=\
+  \ 0 &&\n                hash_str[s1.charAt(j)] <= hash_pat[s1.charAt(j)]) {\n  \
+  \              count++;\n            }\n\n            // if all the characters are\
+  \ matched\n            if (count == len2) {\n                while (hash_str[s1.charAt(start)]\
+  \ > hash_pat[s1.charAt(start)] ||\n                       hash_pat[s1.charAt(start)]\
+  \ == 0) {\n                    // we try to minimize the window.\n             \
+  \       if (hash_str[s1.charAt(start)] > hash_pat[s1.charAt(start)]) {\n       \
+  \                 hash_str[s1.charAt(start)]--;\n                    }\n       \
+  \             start++;\n                }\n                // updating window size.\n\
+  \                int len_window = j - start + 1;\n                if (min_len >\
+  \ len_window) {\n                    // if new minimum sub-string is found, we store\
+  \ value\n                    // of its starting index for new found window.\n  \
+  \                  min_len = len_window;\n                    start_index = start;\n\
+  \                }\n            }\n        }\n        // returning the smallest\
+  \ window or -1 if no such window is present.\n        if (start_index == -1) {\n\
+  \            return (\"\");\n        } else {\n            return (s1.substring(start_index,\
+  \ start_index + min_len));\n        }\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if (len1 < len2) { return ""; }
+  item: '[Edge case handling] Correctly handles cases where s1 is shorter than s2'
+  score: 2.0
+- blank: '2'
+  code_fragment: int[] hash_pat = new int[256]; int[] hash_str = new int[256];
+  item: '[Initialization] Properly initializes hash tables for character counts'
+  score: 2.0
+- blank: '3'
+  code_fragment: for (int i = 0; i < len2; i++) { hash_pat[s2.charAt(i)]++; }
+  item: '[Character counting] Accurately counts characters in s2'
+  score: 2.0
+- blank: '4'
+  code_fragment: for (int j = 0; j < len1; j++) {
+  item: '[Main loop structure] Implements the main loop to iterate through s1'
+  score: 2.0
+- blank: '5'
+  code_fragment: if (hash_pat[s1.charAt(j)] != 0 && hash_str[s1.charAt(j)] <= hash_pat[s1.charAt(j)])
+    { count++; }
+  item: '[Character matching] Correctly checks if characters in s1 match those in
+    s2'
+  score: 2.0
+- blank: '6'
+  code_fragment: while (hash_str[s1.charAt(start)] > hash_pat[s1.charAt(start)] ||
+    hash_pat[s1.charAt(start)] == 0) {
+  item: '[Window minimization] Correctly minimizes the window when all characters
+    are matched'
+  score: 2.0
+- blank: '7'
+  code_fragment: int len_window = j - start + 1;
+  item: '[Window length calculation] Accurately calculates the length of the current
+    window'
+  score: 2.0
+- blank: '8'
+  code_fragment: if (min_len > len_window) { min_len = len_window; start_index = start;
+    }
+  item: '[Result storage] Correctly updates the minimum length and starting index'
+  score: 2.0
+- blank: '9'
+  code_fragment: return (s1.substring(start_index, start_index + min_len));
+  item: '[Final result] Returns the correct substring or empty string'
+  score: 2.0
+- blank: '10'
+  code_fragment: int[] hash_pat = new int[256]; int[] hash_str = new int[256];
+  item: '[Algorithm efficiency] Implements an efficient approach with O(n) time complexity'
+  score: 2.0
+total_points: 20.0

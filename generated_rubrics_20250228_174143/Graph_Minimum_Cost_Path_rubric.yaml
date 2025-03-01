@@ -1,0 +1,92 @@
+category: Graph
+problem_name: Minimum Cost Path
+reference_solution: "// Back-end Complete function Template for JAVA\n\nclass Solution\n\
+  {\n    //these list store 4 possible moves from current cell.\n    static int[]\
+  \ dx = { -1, 0, 1, 0 };\n    static int[] dy = { 0, 1, 0, -1 };\n    \n    static\
+  \ class Cell\n    {\n        int x;\n        int y;\n        int distance;\n   \
+  \     \n        Cell(int x, int y, int distance) \n        {\n            this.x\
+  \ = x;\n            this.y = y;\n            this.distance = distance;\n       \
+  \ }\n    }\n    \n    //custom comparator for inserting cells into Priority Queue.\n\
+  \    static class distanceComparator \n      implements Comparator<Cell>\n    {\n\
+  \        public int compare(Cell a, Cell b)\n        {\n            if (a.distance\
+  \ < b.distance)\n            {\n                return -1;\n            }\n    \
+  \        else if (a.distance > b.distance)\n            {\n                return\
+  \ 1;\n            }\n            else {return 0;}\n        }\n    }\n    \n    //Function\
+  \ to check if cell indexes are within bounds.\n    static boolean isInsideGrid(int\
+  \ i, int j, int ROW, int COL)\n    {\n        return (i >= 0 && i < ROW &&j >= 0\
+  \ && j < COL);\n    }\n    \n    //Function to return the minimum cost to react\
+  \ at bottom\n\t//right cell from top left cell.\n    public int minimumCostPath(int[][]\
+  \ grid)\n    {\n        int row = grid.length;\n        int col = grid[0].length;\n\
+  \        \n        //dp list to store minimum cost to reach each cell.\n       \
+  \ int[][] dp = new int[row][col];\n    \n        //initializing dp array by INT_MAX\
+  \ \n        for(int i = 0; i < row; i++)\n            for(int j = 0; j < col; j++)\n\
+  \                dp[i][j] = Integer.MAX_VALUE;\n        \n        dp[0][0] = grid[0][0];\n\
+  \        \n        //using priority queue to store cell indexes and \n        //minimum\
+  \ cost to reach that cell.\n        PriorityQueue<Cell> pq = new PriorityQueue<Cell>(row\
+  \ * col, new distanceComparator());\n                      \n        pq.add(new\
+  \ Cell(0, 0, dp[0][0]));\n        while (!pq.isEmpty())\n        {\n           \
+  \ //storing first element of priority queue and popping it.\n            Cell curr\
+  \ = pq.poll();\n            \n            //iterating over 4 possible neighbours\
+  \ of current cell.\n            for(int i = 0; i < 4; i++)\n            {\n    \
+  \            int rows = curr.x + dx[i];\n                int cols = curr.y + dy[i];\n\
+  \                \n                //if cell indexes are within bounds.\n      \
+  \          if (isInsideGrid(rows, cols, grid.length, grid[0].length))\n        \
+  \        {\n                    //ifdp value at neighbouring cell+current cell value\
+  \ is less\n                    //than at current cell, we update dp value at current\
+  \ cell \n                    //and insert cell index with dp value in priority queue.\n\
+  \                    if (dp[rows][cols] >dp[curr.x][curr.y]+grid[rows][cols])\n\
+  \                    {\n                        //if cell is already been reached\
+  \ once, we\n                        //remove it from priority queue.\n         \
+  \               if (dp[rows][cols] != Integer.MAX_VALUE)\n                     \
+  \   {\n                            Cell adj = new Cell(rows, cols, dp[rows][cols]);\n\
+  \                            pq.remove(adj);\n                        }\n      \
+  \                  \n                        dp[rows][cols]=dp[curr.x][curr.y]+grid[rows][cols];\n\
+  \                        pq.add(new Cell(rows, cols, dp[rows][cols]));\n       \
+  \             }\n                }\n            }\n        }\n        //returning\
+  \ dp value at bottom right corner cell.\n        return dp[row - 1][col - 1];\n\n\
+  \    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: grid.length == 0 || grid[0].length == 0
+  item: '[Edge case handling] Handles empty grid correctly'
+  score: 1.0
+- blank: '2'
+  code_fragment: int[][] dp = new int[row][col];
+  item: '[Initialization] Correctly initializes the dp array to store minimum costs'
+  score: 2.0
+- blank: '3'
+  code_fragment: dp[i][j] = Integer.MAX_VALUE
+  item: '[Initialization] Properly initializes dp values to maximum integer'
+  score: 2.0
+- blank: '4'
+  code_fragment: pq.add(new Cell(0, 0, dp[0][0]));
+  item: '[Algorithm setup] Initializes the priority queue with the starting cell'
+  score: 2.0
+- blank: '5'
+  code_fragment: while (!pq.isEmpty())
+  item: '[Main loop] Implements the main loop to process cells in the priority queue'
+  score: 2.0
+- blank: '6'
+  code_fragment: Cell curr = pq.poll();
+  item: '[Main loop] Correctly retrieves and removes the cell with the minimum cost'
+  score: 2.0
+- blank: '7'
+  code_fragment: for(int i = 0; i < 4; i++)
+  item: '[Neighbor exploration] Iterates over all four possible moves from the current
+    cell'
+  score: 2.0
+- blank: '8'
+  code_fragment: if (isInsideGrid(rows, cols, grid.length, grid[0].length))
+  item: '[Boundary check] Correctly checks if the neighboring cell is within grid
+    bounds'
+  score: 2.0
+- blank: '9'
+  code_fragment: if (dp[rows][cols] > dp[curr.x][curr.y] + grid[rows][cols])
+  item: '[Cost comparison] Correctly compares and updates the minimum cost for neighboring
+    cells'
+  score: 2.0
+- blank: '10'
+  code_fragment: return dp[row - 1][col - 1];
+  item: '[Final output] Returns the minimum cost to reach the bottom-right cell'
+  score: 2.0
+total_points: 19.0

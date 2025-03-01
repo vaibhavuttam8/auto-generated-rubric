@@ -1,0 +1,68 @@
+category: Linked List
+problem_name: Palindrome Linked List
+reference_solution: "class Solution {\n    // Function to reverse a linked list\n\
+  \    static Node reverseList(Node head) {\n        Node prev = null;\n        Node\
+  \ curr = head;\n        Node next;\n\n        while (curr != null) {\n         \
+  \   next = curr.next;\n            curr.next = prev;\n            prev = curr;\n\
+  \            curr = next;\n        }\n        return prev;\n    }\n\n    // Function\
+  \ to check if two lists are identical\n    static boolean isIdentical(Node n1, Node\
+  \ n2) {\n        while (n1 != null && n2 != null) {\n            if (n1.data !=\
+  \ n2.data) return false;\n            n1 = n1.next;\n            n2 = n2.next;\n\
+  \        }\n        return true;\n    }\n\n    // Function to check whether the\
+  \ list is palindrome\n    static boolean isPalindrome(Node head) {\n        if (head\
+  \ == null || head.next == null) return true;\n\n        Node slow = head, fast =\
+  \ head;\n\n        while (fast.next != null && fast.next.next != null) {\n     \
+  \       slow = slow.next;\n            fast = fast.next.next;\n        }\n\n   \
+  \     Node head2 = reverseList(slow.next);\n        slow.next = null;\n\n      \
+  \  boolean ret = isIdentical(head, head2);\n\n        head2 = reverseList(head2);\n\
+  \        slow.next = head2;\n\n        return ret;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: current = head
+  item: '[Variable initialization] current = head'
+  score: 1.0
+- blank: '1'
+  code_fragment: curr = next
+  item: '[Variable initialization] curr = next'
+  score: 1.0
+- blank: '1'
+  code_fragment: curr = head, prev=null, next
+  item: '[Variable initialization] curr = head, prev=null, next'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(head.next == null)
+  item: '[Conditional logic] if(head.next == null)'
+  score: 1.0
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 20.0

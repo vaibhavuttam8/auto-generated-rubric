@@ -1,0 +1,40 @@
+category: Dynamic Programming
+problem_name: Nth Fibonacci Number
+reference_solution: "class Solution {\n    public int nthFibonacci(int n) {\n    \
+  \    return fib(n);\n    }\n    public static int fib(int n){\n        if(n<=1){\n\
+  \            return n;\n        }\n        return fib(n-1)+fib(n-2);\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if(n <= 1)
+  item: '[Logical correctness] Correctly handles base cases for n = 0 and n = 1'
+  score: 3.0
+- blank: '2'
+  code_fragment: return fib(n - 1) + fib(n - 2)
+  item: '[Logical correctness] Implements the recursive relation for Fibonacci numbers'
+  score: 3.0
+- blank: '3'
+  code_fragment: public int nthFibonacci(int n)
+  item: '[Logical correctness] Correctly defines the method signature for nthFibonacci'
+  score: 2.0
+- blank: '4'
+  code_fragment: return n
+  item: '[Logical correctness] Returns the correct value for base cases'
+  score: 2.0
+- blank: '5'
+  code_fragment: public static int fib(int n)
+  item: '[Logical correctness] Correctly defines the helper method for Fibonacci calculation'
+  score: 2.0
+- blank: '6'
+  code_fragment: int n
+  item: '[Logical correctness] Correctly uses the input parameter n in the method'
+  score: 2.0
+- blank: Multiple
+  code_fragment: O(2^n)
+  item: '[Algorithm efficiency] Acknowledges the exponential time complexity of the
+    naive recursive approach'
+  score: 2.0
+- blank: Multiple
+  code_fragment: int[] dp = new int[n + 1]
+  item: '[Algorithm efficiency] Suggests the use of dynamic programming for optimization'
+  score: 2.0
+total_points: 18.0

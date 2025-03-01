@@ -1,0 +1,78 @@
+category: Linked List
+problem_name: Linked List Group Reverse
+reference_solution: "// Java program to reverse a linked list\n// in groups of given\
+  \ size\n\nclass Node {\n    int data;\n    Node next;\n\n    Node(int x) {\n   \
+  \     data = x;\n        next = null;\n    }\n}\n\nclass GfG {\n  \n    // Function\
+  \ to reverse K groups\n    static Node reverseKGroup(Node head, int k) {\n     \
+  \   if (head == null) {\n            return head;\n        }\n\n        Node curr\
+  \ = head;\n        Node newHead = null;\n        Node tail = null;\n\n        while\
+  \ (curr != null) {\n            Node groupHead = curr;\n            Node prev =\
+  \ null;\n            Node nextNode = null;\n            int count = 0;\n\n     \
+  \       // Reverse the nodes in the current group\n            while (curr != null\
+  \ && count < k) {\n                nextNode = curr.next;\n                curr.next\
+  \ = prev;\n                prev = curr;\n                curr = nextNode;\n    \
+  \            count++;\n            }\n\n            // If newHead is null, set it\
+  \ to the\n            // last node of the first group\n            if (newHead ==\
+  \ null) {\n                newHead = prev;\n            }\n\n            // Connect\
+  \ the previous group to the \n            // current reversed group\n          \
+  \  if (tail != null) {\n                tail.next = prev;\n            }\n\n   \
+  \         // Move tail to the end of the\n              // reversed group\n    \
+  \        tail = groupHead;\n        }\n\n        return newHead;\n    }\n\n    static\
+  \ void printList(Node head) {\n        Node curr = head;\n        while (curr !=\
+  \ null) {\n            System.out.print(curr.data + \" \");\n            curr =\
+  \ curr.next;\n        }\n        System.out.println();\n    }\n\n    public static\
+  \ void main(String[] args) {\n      \n        // Creating a sample singly linked\
+  \ list:\n        // 1 -> 2 -> 3 -> 4 -> 5\n        Node head = new Node(1);\n  \
+  \      head.next = new Node(2);\n        head.next.next = new Node(3);\n       \
+  \ head.next.next.next = new Node(4);\n        head.next.next.next.next = new Node(5);\n\
+  \n        head = reverseKGroup(head, 3);\n        printList(head);\n    }\n}\n"
+rubric_items:
+- blank: '1'
+  code_fragment: curr = temp
+  item: '[Variable initialization] curr = temp'
+  score: 1.0
+- blank: '1'
+  code_fragment: curr = head
+  item: '[Variable initialization] curr = head'
+  score: 1.0
+- blank: '1'
+  code_fragment: curr = next
+  item: '[Variable initialization] curr = next'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(head==null)
+  item: '[Conditional logic] if(head==null)'
+  score: 1.0
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 20.0

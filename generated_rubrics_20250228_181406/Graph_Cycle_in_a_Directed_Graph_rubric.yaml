@@ -1,0 +1,65 @@
+category: Graph
+problem_name: Cycle in a Directed Graph
+reference_solution: "class Solution {\n    // Function to detect cycle in a directed\
+  \ graph using BFS\n    public boolean isCyclic(ArrayList<ArrayList<Integer>> adj)\
+  \ {\n        int V = adj.size();\n        int[] inDegree = new int[V]; // Array\
+  \ to store in-degrees of each vertex\n\n        // Calculate in-degrees of all vertices\n\
+  \        for (int vertex = 0; vertex < V; vertex++) {\n            for (int neighbor\
+  \ : adj.get(vertex)) {\n                inDegree[neighbor]++;\n            }\n \
+  \       }\n\n        Queue<Integer> queue = new LinkedList<>();\n\n        // Enqueue\
+  \ all vertices with in-degree of 0\n        for (int vertex = 0; vertex < V; vertex++)\
+  \ {\n            if (inDegree[vertex] == 0) {\n                queue.offer(vertex);\n\
+  \            }\n        }\n\n        int processedCount = 0; // Counter for processed\
+  \ nodes\n\n        // Process nodes\n        while (!queue.isEmpty()) {\n      \
+  \      int currentNode = queue.poll();\n            processedCount++;\n\n      \
+  \      // Decrease in-degree of neighbors\n            for (int neighbor : adj.get(currentNode))\
+  \ {\n                inDegree[neighbor]--;\n                if (inDegree[neighbor]\
+  \ == 0) {\n                    queue.offer(neighbor);\n                }\n     \
+  \       }\n        }\n\n        // If processedCount is not equal to V, a cycle\
+  \ exists\n        return processedCount != V;\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: int[] inDegree = new int[V];
+  item: Correctly initializes the in-degree array for all vertices
+  score: 2.0
+- blank: '2'
+  code_fragment: 'for (int neighbor : adj.get(vertex)) { inDegree[neighbor]++; }'
+  item: Accurately calculates in-degrees for each vertex
+  score: 2.0
+- blank: '3'
+  code_fragment: if (inDegree[vertex] == 0) { queue.offer(vertex); }
+  item: Correctly identifies vertices with in-degree of 0
+  score: 1.5
+- blank: '2'
+  code_fragment: while (!queue.isEmpty()) { int currentNode = queue.poll(); }
+  item: Properly implements the BFS loop to process nodes
+  score: 2.0
+- blank: '1'
+  code_fragment: inDegree[neighbor]--;
+  item: Correctly updates the in-degree of neighbors
+  score: 1.5
+- blank: '2'
+  code_fragment: if (inDegree[neighbor] == 0) { queue.offer(neighbor); }
+  item: Correctly enqueues neighbors with in-degree of 0
+  score: 1.5
+- blank: '1'
+  code_fragment: processedCount++;
+  item: Accurately counts the number of processed nodes
+  score: 1.0
+- blank: '1'
+  code_fragment: return processedCount != V;
+  item: Correctly checks if processed nodes count matches total vertices
+  score: 2.0
+- blank: '3'
+  code_fragment: if (V == 0 || (V == 1 && adj.get(0).isEmpty()))
+  item: Handles edge cases such as empty graph or single vertex
+  score: 1.0
+- blank: '1'
+  code_fragment: public boolean isCyclic(ArrayList<ArrayList<Integer>> adj)
+  item: Implements the overall algorithm logic correctly
+  score: 3.0
+- blank: '1'
+  code_fragment: O(V + E)
+  item: Uses an efficient approach with appropriate time complexity
+  score: 2.0
+total_points: 19.5

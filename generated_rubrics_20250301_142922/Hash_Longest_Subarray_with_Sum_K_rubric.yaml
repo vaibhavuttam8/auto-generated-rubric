@@ -1,0 +1,75 @@
+category: Hash
+problem_name: Longest Subarray with Sum K
+reference_solution: "// Java program to find longest sub-array having sum k\n// using\
+  \ Hash Map and Prefix Sum\n\nimport java.util.HashMap;\nimport java.util.Map;\n\n\
+  class GfG {\n  \n  \t// Function to find longest sub-array having sum k\n    static\
+  \ int longestSubarray(int[] arr, int k) {\n        Map<Integer, Integer> mp = new\
+  \ HashMap<>();\n        int res = 0;\n        int prefSum = 0;\n\n        for (int\
+  \ i = 0; i < arr.length; ++i) {\n            prefSum += arr[i];\n\n\t\t\t// Check\
+  \ if the entire prefix sums to k\n            if (prefSum == k) \n             \
+  \   res = i + 1;\n\n            // If prefixSum - k exists in the map then there\
+  \ exist such \n      \t\t// subarray from (index of previous prefix + 1) to i.\n\
+  \            else if (mp.containsKey(prefSum - k)) \n                res = Math.max(res,\
+  \ i - mp.get(prefSum - k));\n\n            // Store only first occurrence index\
+  \ of prefSum\n            if (!mp.containsKey(prefSum))\n                mp.put(prefSum,\
+  \ i);\n        }\n\n        return res;\n    }\n\n    public static void main(String[]\
+  \ args) {\n        int[] arr = {10, 5, 2, 7, 1, -10};\n        int k = 15;\n   \
+  \     System.out.println(longestSubarray(arr, k));\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: arr.length == 0 || arr == null
+  item: '[Edge case handling] Correctly checks for empty or null array before processing'
+  score: 1.0
+- blank: '2'
+  code_fragment: int res = 0;
+  item: '[Initialization] Properly initializes the result variable to store the maximum
+    length'
+  score: 2.0
+- blank: '3'
+  code_fragment: int prefSum = 0;
+  item: '[Initialization] Correctly initializes the prefix sum variable'
+  score: 2.0
+- blank: '4'
+  code_fragment: for (int i = 0; i < arr.length; ++i)
+  item: '[Loop structure] Implements the main loop to iterate through the array'
+  score: 2.0
+- blank: '5'
+  code_fragment: prefSum += arr[i];
+  item: '[Prefix sum calculation] Correctly updates the prefix sum within the loop'
+  score: 2.0
+- blank: '6'
+  code_fragment: if (prefSum == k)
+  item: '[Conditional logic] Correctly checks if the current prefix sum equals k'
+  score: 2.0
+- blank: '7'
+  code_fragment: res = i + 1;
+  item: '[Result update] Updates the result when the prefix sum equals k'
+  score: 2.0
+- blank: '8'
+  code_fragment: else if (mp.containsKey(prefSum - k))
+  item: '[Conditional logic] Correctly checks if the difference between prefix sum
+    and k exists in the map'
+  score: 2.0
+- blank: '9'
+  code_fragment: res = Math.max(res, i - mp.get(prefSum - k));
+  item: '[Result update] Updates the result based on the length of the found subarray'
+  score: 2.0
+- blank: '10'
+  code_fragment: if (!mp.containsKey(prefSum))
+  item: '[Map handling] Correctly stores the first occurrence of the prefix sum in
+    the map'
+  score: 2.0
+- blank: '11'
+  code_fragment: return res;
+  item: '[Return value] Returns the correct length of the longest subarray'
+  score: 2.0
+- blank: '12'
+  code_fragment: Map<Integer, Integer> mp = new HashMap<>();
+  item: '[Data structure usage] Correctly initializes the HashMap to store prefix
+    sums'
+  score: 2.0
+- blank: Multiple
+  code_fragment: O(n) time complexity
+  item: '[Algorithm efficiency] Implements an efficient algorithm with O(n) time complexity'
+  score: 3.0
+total_points: 26.0

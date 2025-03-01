@@ -1,0 +1,5 @@
+Traverse through all the DSA topics
+For each problem, analyze the correct solutions and wrong solutions
+Generate a rubric based on the key differences between correct and incorrect solutions
+Output the rubric in a format similar to what was described in the AutoRubric paper
+

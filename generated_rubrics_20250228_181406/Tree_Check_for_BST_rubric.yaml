@@ -1,0 +1,52 @@
+category: Tree
+problem_name: Check for BST
+reference_solution: "\n\n// User function Template for Java\n\nclass Solution {\n\
+  \    private Integer prev= null;\n    // Function to check whether a Binary Tree\
+  \ is BST or not.\n    boolean isBST(Node root) {\n        // code here.\n      \
+  \  return inorderCheck(root);\n    }\n    private boolean inorderCheck(Node node)\
+  \ {\n        if (node == null) return true;\n        if (!inorderCheck(node.left))\
+  \ return false;\n        if (prev != null && node.data <= prev) return false;\n\
+  \        prev= node.data;\n        return inorderCheck(node.right);\n    }\n}"
+rubric_items:
+- blank: '1'
+  code_fragment: if(node == null)
+  item: '[Base case handling] Checks if the current node is null'
+  score: 1.0
+- blank: '2'
+  code_fragment: return true
+  item: '[Base case return] Returns true for null node indicating valid BST'
+  score: 1.0
+- blank: '3'
+  code_fragment: inorderCheck(node.left)
+  item: '[Recursive call] Recursively checks the left subtree'
+  score: 2.0
+- blank: '4'
+  code_fragment: prev != null && node.data <= prev
+  item: '[BST condition check] Validates current node against previous node value'
+  score: 3.0
+- blank: '5'
+  code_fragment: prev = node.data
+  item: '[State update] Updates the previous node value correctly'
+  score: 2.0
+- blank: '6'
+  code_fragment: inorderCheck(node.right)
+  item: '[Recursive call] Recursively checks the right subtree'
+  score: 2.0
+- blank: '7'
+  code_fragment: return false
+  item: '[Early exit] Returns false when BST condition is violated'
+  score: 2.0
+- blank: '8'
+  code_fragment: boolean isBST(Node root)
+  item: '[Function signature] Correctly defines the function to check BST'
+  score: 1.0
+- blank: '9'
+  code_fragment: private Integer prev = null
+  item: '[Variable initialization] Correctly initializes the variable to track previous
+    node'
+  score: 1.0
+- blank: '10'
+  code_fragment: return inorderCheck(root)
+  item: '[Final return] Returns the result of the BST check'
+  score: 2.0
+total_points: 17.0

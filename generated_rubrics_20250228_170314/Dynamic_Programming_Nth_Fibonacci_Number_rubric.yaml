@@ -1,0 +1,40 @@
+category: Dynamic Programming
+problem_name: Nth Fibonacci Number
+reference_solution: "class Solution {\n    public int nthFibonacci(int n) {\n    \
+  \    // code here\n        return fib(n);\n    }\n        \n    public static int\
+  \ fib(int n){\n        if(n<=1){\n            return n;\n        }\n        return\
+  \ fib(n-1)+fib(n-2);\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length <= 1 || arr == null
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: initialization pattern specific to this problem
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: main loop pattern specific to this problem
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: conditional logic pattern specific to this problem
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: variable update pattern specific to this problem
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return pattern specific to this problem
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: Essential algorithm components for this problem type
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Efficient algorithm pattern for this problem type
+  item: '[Algorithm efficiency] Uses an efficient approach with appropriate time complexity'
+  score: 2.0
+total_points: 16.0

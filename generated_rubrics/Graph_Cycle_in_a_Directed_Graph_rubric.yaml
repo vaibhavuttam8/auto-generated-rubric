@@ -1,0 +1,69 @@
+category: Graph
+problem_name: Cycle in a Directed Graph
+reference_solution: "class Solution {\n    // Function to detect cycle in a directed\
+  \ graph using BFS\n    public boolean isCyclic(ArrayList<ArrayList<Integer>> adj)\
+  \ {\n        int V = adj.size();\n        int[] inDegree = new int[V]; // Array\
+  \ to store in-degrees of each vertex\n\n        // Calculate in-degrees of all vertices\n\
+  \        for (int vertex = 0; vertex < V; vertex++) {\n            for (int neighbor\
+  \ : adj.get(vertex)) {\n                inDegree[neighbor]++;\n            }\n \
+  \       }\n\n        Queue<Integer> queue = new LinkedList<>();\n\n        // Enqueue\
+  \ all vertices with in-degree of 0\n        for (int vertex = 0; vertex < V; vertex++)\
+  \ {\n            if (inDegree[vertex] == 0) {\n                queue.offer(vertex);\n\
+  \            }\n        }\n\n        int processedCount = 0; // Counter for processed\
+  \ nodes\n\n        // Process nodes\n        while (!queue.isEmpty()) {\n      \
+  \      int currentNode = queue.poll();\n            processedCount++;\n\n      \
+  \      // Decrease in-degree of neighbors\n            for (int neighbor : adj.get(currentNode))\
+  \ {\n                inDegree[neighbor]--;\n                if (inDegree[neighbor]\
+  \ == 0) {\n                    queue.offer(neighbor);\n                }\n     \
+  \       }\n        }\n\n        // If processedCount is not equal to V, a cycle\
+  \ exists\n        return processedCount != V;\n    }\n}"
+rubric_items:
+- blank: '2'
+  code_fragment: for(int i=0;i<n;i++)
+  item: '[Loop structure] for(int i=0;i<n;i++)'
+  score: 1.0
+- blank: '2'
+  code_fragment: for(int i=0;i<adj.size()
+  item: '[Loop structure] for(int i=0;i<adj.size()'
+  score: 1.0
+- blank: '3'
+  code_fragment: if( dfs(i,adj,visited,rec)
+  item: '[Conditional logic] if( dfs(i,adj,visited,rec)'
+  score: 1.0
+- blank: '3'
+  code_fragment: if(dfs(i,visited,pathV,adj)
+  item: '[Conditional logic] if(dfs(i,visited,pathV,adj)'
+  score: 1.0
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 20.0

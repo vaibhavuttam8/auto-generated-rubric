@@ -1,0 +1,49 @@
+category: Binary Search
+problem_name: First and Last Occurrences
+reference_solution: "// User function Template for Java\n\nclass GFG {\n    ArrayList<Integer>\
+  \ find(int arr[], int x) {\n        int low=0;\n        int res1=-1;\n        int\
+  \ res2=-1;\n        int high=arr.length-1;\n        while(low<=high){\n        \
+  \    int mid=(low+high)/2;\n            if(arr[mid]==x){\n                res1=mid;\n\
+  \                high=mid-1;\n            }\n            else if(x<arr[mid]){\n\
+  \                high=mid-1;\n            }\n            else{\n               \
+  \ low=mid+1;\n            }\n        }\n        low=0;\n        high=arr.length-1;\n\
+  \        while(low<=high){\n            int mid=(low+high)/2;\n            if(arr[mid]==x){\n\
+  \                res2=mid;\n                low=mid+1;\n            }\n        \
+  \    else if(x<arr[mid]){\n                high=mid-1;\n            }\n        \
+  \    else{\n                low=mid+1;\n            }\n        }\n        ArrayList<Integer>\
+  \ a= new ArrayList<>();\n        a.add(res1);\n        a.add(res2);\n        return\
+  \ a;\n    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length <= 1
+  item: '[Edge case handling] Handles empty array or single element array'
+  score: 1.0
+- blank: '1'
+  code_fragment: ITEM_1_BOOL
+  item: '[Logical correctness] Correctly initializes variables before the main algorithm'
+  score: 2.0
+- blank: '2'
+  code_fragment: ITEM_2_BOOL
+  item: '[Logical correctness] Properly implements the main loop structure'
+  score: 2.0
+- blank: '3'
+  code_fragment: ITEM_3_BOOL
+  item: '[Logical correctness] Correctly handles conditional logic within the algorithm'
+  score: 2.0
+- blank: Multiple
+  code_fragment: contains(update pattern)
+  item: '[Logical correctness] Updates variables correctly during algorithm execution'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return result
+  item: '[Logical correctness] Returns the correct result'
+  score: 2.0
+- blank: Multiple
+  code_fragment: ITEM_1_BOOL _AND ITEM_2_BOOL _AND ITEM_3_BOOL
+  item: '[Algorithm correctness] Correctly implements the core algorithm logic'
+  score: 3.0
+- blank: Multiple
+  code_fragment: ITEM_2_BOOL _AND NOT(contains(nested loops))
+  item: '[Algorithm efficiency] Uses an efficient approach (O(n) time complexity)'
+  score: 2.0
+total_points: 16.0

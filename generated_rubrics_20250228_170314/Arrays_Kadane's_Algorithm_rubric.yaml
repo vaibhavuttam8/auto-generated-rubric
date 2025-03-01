@@ -1,0 +1,52 @@
+category: Arrays
+problem_name: Kadane's Algorithm
+reference_solution: "// Java Program to find the maximum subarray sum using nested\
+  \ loops \n\nimport java.util.Arrays;\n\nclass GfG {\n\n    // Function to find the\
+  \ sum of subarray with maximum sum\n    static int maxSubarraySum(int[] arr) {\n\
+  \        int res = arr[0];\n  \n        // Outer loop for starting point of subarray\n\
+  \        for (int i = 0; i < arr.length; i++) {\n            int currSum = 0;\n\
+  \      \n            // Inner loop for ending point of subarray\n            for\
+  \ (int j = i; j < arr.length; j++) {\n                currSum = currSum + arr[j];\n\
+  \              \n                // Update res if currSum is greater than res\n\
+  \                res = Math.max(res, currSum);\n            }\n        }\n     \
+  \   return res;\n    }\n\n    public static void main(String[] args) {\n       \
+  \ int[] arr = {2, 3, -8, 7, -1, 2, 3};\n        System.out.println(maxSubarraySum(arr));\n\
+  \    }\n}"
+rubric_items:
+- blank: '5'
+  code_fragment: arr.length == 0 || allNegative(arr)
+  item: '[Edge case handling] Handles array with all negative numbers or empty array'
+  score: 1.0
+- blank: '1'
+  code_fragment: int currSum = 0; int maxSum = arr[0];
+  item: '[Logical correctness] Correctly initializes variables for tracking current
+    sum and maximum sum'
+  score: 2.0
+- blank: '2'
+  code_fragment: for(int i = 0; i < arr.length; i++)
+  item: '[Logical correctness] Properly iterates through the array elements'
+  score: 2.0
+- blank: '3'
+  code_fragment: currSum = Math.max(arr[i], currSum + arr[i]);
+  item: '[Logical correctness] Correctly updates current sum by adding current element
+    or restarting from current element'
+  score: 2.0
+- blank: Multiple
+  code_fragment: maxSum = Math.max(maxSum, currSum);
+  item: '[Logical correctness] Updates maximum sum whenever current sum exceeds it'
+  score: 2.0
+- blank: Multiple
+  code_fragment: return maxSum;
+  item: '[Logical correctness] Returns the maximum sum found'
+  score: 2.0
+- blank: Multiple
+  code_fragment: currSum = Math.max(arr[i], currSum + arr[i]) _AND maxSum = Math.max(maxSum,
+    currSum) _AND complete_loop_structure
+  item: '[Algorithm correctness] Correctly implements Kadane''s algorithm for maximum
+    subarray sum'
+  score: 3.0
+- blank: Multiple
+  code_fragment: Single pass _AND constant space _AND no nested loops
+  item: '[Algorithm efficiency] Uses Kadane''s algorithm with O(n) time complexity'
+  score: 2.0
+total_points: 16.0
